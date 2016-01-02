@@ -1,3 +1,39 @@
-body {background-color: #282828;
-      color:white;
-      }
+body{
+    background-color: white;
+    color:white;
+    margin:0;
+    font-family: 'Open Sans';
+}
+
+#banner{
+    height:800px;
+    width:100%;
+    color:white;
+    text-align:center;
+    overflow:hidden;
+    
+}
+
+#banneroverlay {
+    height:inherit;
+    width:inherit;
+    position:absolute;
+    box-shadow: inset 0px 0px 150px rgba(0,0,0,1);
+}
+
+#bannertext{
+    position:absolute;
+    top:400px;
+    left:50%;
+    transform:translate(-50%,-50%);
+    box-shadow: 0px 0px 100px rgba(0,0,0,1);
+    /*background-color:rgba(0,0,0,calc(90/256));*/
+    background-image:radial-gradient(circle, rgba(0,0,0,calc(161/256)) 0%, rgba(0,0,0,calc(122/256)) 95% rgba(0,0,0,calc(95/256)) 100%);
+    /* Still not properly vertically centered*/
+    /*Gon need a border gradient so it looks flush with the shadow*/
+}
+
+#menu{
+    height:80px;
+    width:100%;
+}
