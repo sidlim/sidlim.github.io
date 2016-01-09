@@ -28,7 +28,7 @@ body{
     transform:translate(-50%,-50%);
     box-shadow: 0px 0px 100px rgba(0,0,0,1);
     /*background-color:rgba(0,0,0,calc(90/256));*/
-    background-image:radial-gradient(circle, rgba(0,0,0,calc(161/256)) 0%, rgba(0,0,0,calc(122/256)) 95% rgba(0,0,0,calc(95/256)) 100%);
+    background-image:radial-gradient(circle, rgba(0,0,0,calc(161/256)) center, rgba(0,0,0,calc(122/256)) closest-side, rgba(0,0,0,calc(95/256)) farthest-corner);
     /* Still not properly vertically centered*/
     /*Gon need a border gradient so it looks flush with the shadow*/
 }
