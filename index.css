@@ -41,5 +41,5 @@ body{
     max-width:1080px;
     top:800px; /* This doesn't account for the menu bar yet. */
     left:50%;
-    transform:translate(0%,-50%);
+    transform:translate(-50%, 0%);
 }
