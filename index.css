@@ -32,6 +32,10 @@ body{
     /*Gon need a border gradient so it looks flush with the shadow*/
 }
 
+#bannerbkg{
+    transform:translate(-50%,-50%);
+}
+
 #menu{
     height:80px;
     width:100%;
