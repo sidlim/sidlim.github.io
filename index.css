@@ -50,8 +50,14 @@ body{
 }
 
 #content{
+    width:100%;
+    margin:auto;
+    background-color:white;
+    z-index:0;
+}
+
+#article{
     max-width:1080px;
     margin:auto;
     padding:8px;
-    z-index:0;
 }
