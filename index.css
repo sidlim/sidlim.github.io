@@ -46,7 +46,7 @@ body{
     }
 }
 
-@media not (min-height: 800px) {
+@media not all and (min-height: 800px) {
     #bannertext{
         position:absolute;
         top:50%;
