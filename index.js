@@ -1,5 +1,5 @@
 /* Onload stuff. */
-window.document.body.addEventListener('load', loader);
+window.addEventListener('load', loader);
     function loader() {
         var menu = document.createElement('div');
         document.body.appendChild(menu);
