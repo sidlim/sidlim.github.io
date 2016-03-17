@@ -15,8 +15,126 @@
                 <h5>My website, intended to turn into my senior project.</h5>
             </div>
             <div id='bannerbkg' style='width:100%;'>
-                <iframe src='/rockets/banner/index.html' height='100%' width='100%'>
-            </div>
+                <canvas id='c' resize='true' />
+                <script type='text/javascript'>
+                    var dt = 0.01; 
+                        // The time step, in seconds. Used to approximate in integration. Smaller is better, but also may cause performance issues.
+                    var x = [(window.innerWidth/2), (window.innerHeight/2)];
+                    var v = [200,0];
+                    var absV = vmag(v);
+                        // Set up initial position and velocity as vectors.
+                    var slider = document.createElement('input');
+                        document.getElementsByClassName('center')[0].appendChild(slider);
+                        slider.type = 'range';
+                        slider.class = 'slider';
+                        slider.max = 0.125*Math.pow(vmag(v),2);
+                        slider.min = -1*slider.max;
+                        slider.class = 'center';
+                        function Amag() {
+                            return(slider.value);
+                        }
+                      // Set up the slider for acceleration.
+                    var O = document.getElementById('marker');
+                        // Set up a marker element to see where this thing goes.
+                    function a() {
+                        var rot90 = [[0,1],[-1,0]]; // 90 degree clockwise rotation matrix.
+                        if (vmag(v) != 0) {
+                            var vmat = [norm(v)]; // Unit vector in the direction of the velocity.
+                        }
+                        else {
+                            var vmat = [[0,0]]
+                        }
+                        return(vscale(Amag(),(mmult(vmat,rot90)[0]))); // Rotate normalized V by 90 deg (because centripetal acc is always perpendicular), then scale.
+                    }
+                        // Function that returns centripetal acceleration vector.
+                    function updatev() {
+                        // Just scaling by dt is slightly inaccurate. As you repeat it over time, you'll see the magnitude of v start to increase, so instead, we need some additional scaling to preserve |v|. First we normalize the vsum to preserve its direction, then we scale up to absV, the magnitude of the velocity at time t=0.
+                        v = vscale(absV, norm(vsum(v,vscale(dt,a()))));
+                        return(v);
+                    }
+                        // Function that updates velocity. v_{t} = v_{t-1} + (a)*(Δt)
+                    function updatex() {
+                        x = vsum(x,vscale(dt,v),vscale((0.5*Math.pow(dt,2)),a()));
+                        return(x);
+                    }
+                        // Function that updates velocity. x_{t} = x_{t-1} + (v_{t-1})*(Δt) + (1/2)*(a_t)*(Δt)^2 <-- that will always return 2, use Math.pow() instead of ^.
+                    function update() {
+                        /* We can eventually get rid of this. It'll allow us to de-link the animation clock from the integration clock.
+                        O.style.left = mod(x[0] + window.innerWidth/2, window.innerWidth);
+                        O.style.top = mod(x[1] + window.innerHeight/2, window.innerHeight);
+                        */
+                        // Calculation steps:
+                        updatex();
+                        updatev();
+                        // Drawing steps:
+                        drawship();
+                        drawradius(); // Commented out temporarily for debugging. I'm going to draw the spaceship first.
+                        paper.view.draw();
+                    }
+                    var integrator = setInterval(update,(1000*dt));
+                    
+                    // We need a souped up angle function that doesn't jump in order to get the spaceship to draw properly.
+                    function vangle(v1,v2) {
+                        var n1 = norm(v1);
+                        var n2 = norm(v2);
+                        var rawcosangle = Math.acos(dotprod(n1,n2));
+                        var D = det([n1,n2]);
+                        if (D < 0) {
+                            return(-1*rawcosangle)
+                        }
+                        else {
+                            return(rawcosangle);
+                        }
+                    }
+                    
+                    function mod(n, m) { // An improved mod function, lets us avoid negative numbers in the result
+                        return(((n % m) + m) % m);
+                    }
+                    
+                    function convertto() { // Meant to convert from integration units to pixels, including the shift to the center of the window.
+                        // Eventually there will be stuff here
+                    }
+                    
+                    /* Paper/Drawing stuff starts here: */
+                    var canvas = document.getElementById('c');
+                        paper.setup(canvas);
+                        
+                    var Rpath = new paper.Path();
+                        Rpath.strokeColor = 'grey';
+                        // Start a radius path in gray
+                    function drawradius() {
+                        Rpath.clear(); // Clear the earlier radius path
+                        var acc = a(); // Create a storage variable
+                        if (vmag(acc) !== 0) { // As long as the acceleration isn't a zero vector, we can proceed
+                            var absR = (Math.pow(absV,2))/(vmag(acc)); // Find the magnitude of the radius and store it to absV
+                            var r = vscale((absR),norm(acc)); // Take the acceleration vector and 
+                            var start = new paper.Point(x);
+                            Rpath.moveTo(start);
+                            Rpath.lineTo(vsum(r,x));
+                            return(r);
+                        }
+                    }
+                
+                    var Spath = new paper.Path();
+                        Spath.strokeColor = 'blue';
+                        // Draw the Ship in blue
+                    function drawship() {
+                        Spath.clear();
+                        var Urwing = [-10, -20];
+                        var Ulwing = [10, -20];
+                            // Set up the ship's triangle shape in unrotated space.
+                        var dir = vangle(v, [0,1]); // Find the angle between a unit vector to the right and the velocity
+                        var rotMat = [[Math.cos(dir), -Math.sin(dir)], [Math.sin(dir), Math.cos(dir)]]; // Set up a rotation matrix to rotate the shape we had before.
+                        var UTRwing = mmult([Urwing], rotMat)[0]; // Rotate the Urwing vector to get the coordinates of the untranslated right wing
+                        var UTLwing = mmult([Ulwing], rotMat)[0]; // ^ for the left wing. The tip doesn't get rotated, oh well.
+                        var tip = new paper.Point(x);
+                            Spath.moveTo(tip);
+                            Spath.lineTo(vsum(x,UTRwing));
+                            Spath.lineTo(vsum(x,UTLwing));
+                            Spath.lineTo(tip);
+                        }
+                    </script>
+                </div>
         </div>
         <div id='content'>
             <article id='post'>
