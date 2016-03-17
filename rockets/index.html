@@ -23,6 +23,7 @@
             <div id='banneroverlay'></div>
             <div id='bannertext'>
                 <h1>Interesting title here.</h1>
+                <input id='slider'>
                 <h5>My website, intended to turn into my senior project.</h5>
             </div>
             <div id='bannerbkg' style='width:100%;'>
@@ -34,8 +35,7 @@
                     var v = [200,0];
                     var absV = vmag(v);
                         // Set up initial position and velocity as vectors.
-                    var slider = document.createElement('input');
-                        document.getElementById('bannertext').appendChild(slider);
+                    var slider = document.getElementById('slider');
                         slider.type = 'range';
                         slider.class = 'slider';
                         slider.max = 0.125*Math.pow(vmag(v),2);
