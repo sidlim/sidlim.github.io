@@ -205,11 +205,14 @@
                         <button type='button' class='next'> > </button>
                     </div>
                     <script type='text/javascript'>
-                        // Button setup:
+                        // DOM setup:
                         var Lbutton = document.getElementsByClassName('prev')[0];
                         var Rbutton = document.getElementsByClassName('next')[0];
+                        var expl = document.getElementsByClassName('expl')[0];
+                        var Vdemo = document.getElementById('vexSub');
                         
-                    
+                        // Paper setup:
+                        paper.setup(Vdemo);
                     </script>
                 <p>
                     Whenever the dot product of two vectors with magnitude is 0, that implies that the two vectors are perpendiular to each other. Basically, all we have is a derivation that if the radius is constant, at any point in time, the velocity vector has to be perpendicular to the radial vector.
