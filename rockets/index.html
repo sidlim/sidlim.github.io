@@ -195,7 +195,13 @@
                     </br>
                     </br>
                     Between steps 3 and 4, all we've done is some algebra to bring this expression down to something less messy. Then, in step 5, what's going on is an application of a cool substitution. Turns up, \( \frac{d\vec{r}}{dt} \) is just \( \vec{v} \). Here's a visual explanation of why:
-                    <canvas id='vexSub'></canvas>
+                    <canvas id='vexSub' resize='true' />
+                    </br>
+                    <script type='text/javascript'>
+                        var DemoX = [];
+                        var DemoV = [];
+                        
+                    </script>
                     Whenever the dot product of two vectors with magnitude is 0, that implies that the two vectors are perpendiular to each other. Basically, all we have is a derivation that if the radius is constant, at any point in time, the velocity vector has to be perpendicular to the radial vector.
                 </p>
                 <h1>Making the Demo</h1>
