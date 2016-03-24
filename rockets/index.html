@@ -35,7 +35,7 @@
             }
             
             #ctrls{
-                margin-left:100%;
+                right:0px;
             }
         </style>
     </head>
@@ -205,14 +205,14 @@
                     </div>
                     <span class='expl'></span>
                     <div id='ctrls'>
-                        <button type='button' class='prev'> < </button>
-                        <button type='button' class='next'> > </button>
+                        <button type='button' id='prev'> < </button>
+                        <button type='button' id='next'> > </button>
                     </div>
                     <script type='text/javascript'>
                         // DOM setup:
-                        var Lbutton = document.getElementsByClassName('prev')[0];
-                        var Rbutton = document.getElementsByClassName('next')[0];
-                        var expl = document.getElementsByClassName('expl')[0];
+                        var Lbutton = document.getElementById('prev');
+                        var Rbutton = document.getElementById('next');
+                        var expl = document.getElementById('expl');
                         var Vdemo = document.getElementById('vexSub');
                         
                         // Paper setup:
