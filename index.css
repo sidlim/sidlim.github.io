@@ -99,3 +99,10 @@ body{
 p:first-letter  {
    text-indent:1em;
 }
+
+.menuspacing {
+    max-width: 1080px;
+    margin: auto;
+    padding: 8px;
+    height: 64px;
+}
