@@ -7,4 +7,7 @@ window.addEventListener('load', loader);
         var Mspacing = document.createElement('div');
         menu.appendChild(Mspacing);
         Mspacing.className = 'menuspacing';
+        var postsJSON = document.createElement('script');
+        document.head.appendChild(postsJSON);
+        postsJSON.src = 'posts.json';
     }
