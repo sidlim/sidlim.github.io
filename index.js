@@ -7,6 +7,9 @@ window.addEventListener('load', loader);
         var Mspacing = document.createElement('div');
         menu.appendChild(Mspacing);
         Mspacing.className = 'menuspacing';
+        
+        var postdata = null;
+        
         request = new XMLHttpRequest();
         request.open('GET', 'posts.json', true);
         
@@ -14,7 +17,7 @@ window.addEventListener('load', loader);
             if (request.status >= 200 && request.status < 400){
                 // Success!
                 var data = JSON.parse(request.responseText);
-                console.log(data);
+                postdata = data;
             } else {
                 // We reached our target server, but it returned an error
         }
