@@ -1,12 +1,12 @@
 {
-    "posts": {
+    "Posts": {
         "Rockets": {
             "url": "rockets/index.html",
             "desc": "A demo in Centripetal Acceleration.",
             "date": "3/21/2016"
         }
     }
-    "pages": {
+    "Pages": {
         "Home": {
             "url": "index.html"
         }
