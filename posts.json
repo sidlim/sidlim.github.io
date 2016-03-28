@@ -1,13 +1,14 @@
 {
-"posts":
-    "Rockets": {
-        "url": "rockets/index.html",
-        "desc": "A demo in Centripetal Acceleration.",
-        "date": "3/21/2016"
-    }
-"pages": {
-    "Home": {
-        "url": "index.html"
+    "posts": {
+        "Rockets": {
+            "url": "rockets/index.html",
+            "desc": "A demo in Centripetal Acceleration.",
+            "date": "3/21/2016"
         }
     }
-}
+    "pages": {
+        "Home": {
+            "url": "index.html"
+            }
+        }
+    }
