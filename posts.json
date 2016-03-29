@@ -1,7 +1,10 @@
 {
+    "Home": {
+        "url": "http://eyamil.github.io/index.html"
+    },
     "Posts": {
         "Rockets": {
-            "url": "rockets/index.html",
+            "url": "http://eyamil.github.io/rockets/index.html",
             "desc": "A demo in Centripetal Acceleration.",
             "date": "3/21/2016"
         }
