@@ -1,4 +1,6 @@
 /* Onload stuff. */
+var postdata = null;
+
 window.addEventListener('load', loader);
     function loader() {
         var menu = document.createElement('div');
@@ -7,8 +9,6 @@ window.addEventListener('load', loader);
         var Mspacing = document.createElement('div');
         menu.appendChild(Mspacing);
         Mspacing.className = 'menuspacing';
-        
-        var postdata = null;
         
         request = new XMLHttpRequest();
         request.open('GET', 'posts.json', true);
