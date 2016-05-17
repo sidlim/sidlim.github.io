@@ -48,7 +48,7 @@
                 <h5>A mini-project on acceleration</h5>
             </div>
             <div id='bannerbkg' style='width:100%;'>
-                <canvas id='c' resize='true' />
+                <canvas id='c' resize='true' data-paper-keepalive="true" />
                 <script type='text/javascript'>
                     var dt = 0.01; 
                         // The time step, in seconds. Used to approximate in integration. Smaller is better, but also may cause performance issues.
@@ -103,7 +103,7 @@
                         // Drawing steps:
                         drawship();
                         drawradius();
-                        //paper.view.draw();
+                        paper.view.draw();
                         
                     }
                     var integrator = setInterval(update,(1000*dt));
