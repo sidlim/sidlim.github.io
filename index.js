@@ -1,5 +1,5 @@
 /* Onload stuff. */
-var data = {'Pages':''};
+var data;
 window.addEventListener('load', loader);
     function loader() {
         var menu = document.createElement('div');
@@ -16,6 +16,12 @@ window.addEventListener('load', loader);
             if (request.status >= 200 && request.status < 400){
                 // Success!
                 data = JSON.parse(request.responseText);
+                for (var n = 0; n < Object.keys(data.Pages).length; n++) {
+                    var link = document.createElement('span');
+                    Mspacing.appendChild(link);
+                    link.className('menulink');
+                    link.innerText = Object.keys(data.Pages)[n];
+                };
             } else {
                 // We reached our target server, but it returned an error
         }
@@ -26,12 +32,5 @@ window.addEventListener('load', loader);
         // There was a connection error of some sort
     };
     
-    console.log(request.send());
-    }
-    
-    for (var n = 0; n < Object.keys(data.Pages).length; n++) {
-        var link = document.createElement('span');
-        Mspacing.appendChild(link);
-        link.className('menulink');
-        link.innerText = Object.keys(data.Pages)[n];
+    request.send();
     }
