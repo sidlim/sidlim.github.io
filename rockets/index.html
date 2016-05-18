@@ -225,19 +225,29 @@
                     </br>
                     <b>Transposition</b> is a more complicated operation. It's defined on matrices, and basically it's defined in the following manner: $$ T\left(\begin{bmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{bmatrix}\right) = \begin{bmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{bmatrix}$$.
                     </br>
-                    Notice that numbers in the matrix get swapped. Also, this isn't restricted to square-shaped matrices. You can transpose rectangular matrices and even vectors!
+                    Notice that numbers in the matrix get swapped. Also, this isn't restricted to square-shaped matrices. You can transpose rectangular matrices and even vectors! Use transpose(matrix) to invoke it.
                     </br>
                     </br>
-                    <b>Dot Products</b>
+                    <b>Dot Products</b> are also slightly more complicated than the sum and scale operations. In fact, I'm not sure that there's a simple way to visualize it, so I won't offer a visual explanation. If we have two vectors \( \vec{v}=\langle x_v,y_v \rangle \) & \( \vec{u}=\langle x_u,y_u \rangle \), \( \vec{v}\cdot\vec{u}=x_vx_u+y_vy_u \). Notice that it's a number (a scalar). In order to use it, you can just call dot(vector1, vector2).
                     </br>
                     </br>
-                    <b>Matrix Multiplication</b>
+                    <b>Matrix Multiplication</b> isn't a complicated process, but the only explanations that I can come up with are. In fact, they're so complicated that I won't bother explaining it. Just know that you can do it via calling mmult(matrix1, matrix2).
                     </br>
                     </br>
-                    <b>Vector Normalization</b>
+                    <b>Vector Normalization</b> takes a vector, and preserves its angle, but scales it down so its overall length, \( \sqrt{x_v^2+y_v^2} \) becomes 1 after the rescale.
                     </br>
                     </br>
-                    <b>Determinants</b>
+                    <b>Determinants</b> are also one of those simple but hard-to-explain things. Eventually I'll find the words to explain it and then I'll fill this in, but that time has not yet occurred. You can invoke determinants by doing det(matrix). I'm also almost sure that I've used a sub-optimal algorithm for doing determinants, but since I haven't used them extensively I haven't seen that become problematic yet.
+                    </br>
+                    </br>
+                    </br>
+                    Now, onto the actual meat of this demo. I needed a couple parts to code this up. First, I needed something to draw the rocket with. Luckily, paper.js is a tool that's easy to use. The other benefit of paper.js is that (just by luck), my vector library happens to work together really well with it because the convention of using arrays to represent vectors is supported by <a href='http://paperjs.org/'>Paper</a> as well.
+                    </br>
+                    Secondly, I needed a user input. That's the little slider up at the top, and it'll allow you to control the amount of acceleration applied to the rocket. There's a little function that does some bookkeeping that you can associate with this bit, and basically all it does is turn the value of this slider into an acceleration vector.
+                    </br>
+                    The last part to this demo was an integrator. The user input is an acceleration vector, so it needs to be integrated twice to get position.
+                    $$\frac{d^2x}{dt^2}=\frac{d}{dt}\left(v\right)=a$$
+                    The output basically takes this process, does its inverse on \(a\), and then displays the result. The way I've done this is via Euler integration with a time step \( \delta t =0.01\mathrm{s} \), so it's fairly inaccurate. I discovered that this method made the speed of the rocket increase, which is unintended, so I've done a hacky re-scaling step to make sure that the speed stays constant as long as the acceleration stays constant. It's not perfect, but hey, it works (technically it doesn't, but it looks like it does, so we can call it a day).
                     
                 </p>
             </article>
