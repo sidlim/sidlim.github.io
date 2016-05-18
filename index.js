@@ -17,7 +17,7 @@ window.addEventListener('load', loader);
             if (request.status >= 200 && request.status < 400){
                 // Success!
                 var data = JSON.parse(request.responseText);
-                postdata = data;
+                return(data)
             } else {
                 // We reached our target server, but it returned an error
         }
@@ -28,14 +28,12 @@ window.addEventListener('load', loader);
         // There was a connection error of some sort
     };
     
-    request.send();
+    console.log(request.send());
     }
-    
-    var ms = document.getElementsByClassName('menuspacing')[0];
     
     for (var n = 0; n < Object.keys(postdata.Pages).length; n++) {
         var link = document.createElement('span');
-        ms.appendChild(link);
+        Mspacing.appendChild(link);
         link.className('menulink');
         link.innerText = Object.keys(postdata.Pages)[n];
     }
