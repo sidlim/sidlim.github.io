@@ -29,3 +29,14 @@ window.addEventListener('load', loader);
     
     request.send();
     }
+    
+    var ms = document.getElementByClassName('menuspacing')[0];
+    
+    for (var page in postdata.Pages) {
+        var n = 0;
+        var link = document.createElement('span');
+        ms.appendChild(link);
+        link.className('menulink');
+        link.innerText = Object.keys(postdata.Pages)[n];
+        n++;
+    }
