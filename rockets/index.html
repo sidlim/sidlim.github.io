@@ -247,8 +247,11 @@
                     </br>
                     The last part to this demo was an integrator. The user input is an acceleration vector, so it needs to be integrated twice to get position.
                     $$\frac{d^2x}{dt^2}=\frac{d}{dt}\left(v\right)=a$$
-                    The output basically takes this process, does its inverse on \(a\), and then displays the result. The way I've done this is via Euler integration with a time step \( \delta t =0.01\mathrm{s} \), so it's fairly inaccurate. I discovered that this method made the speed of the rocket increase, which is unintended, so I've done a hacky re-scaling step to make sure that the speed stays constant as long as the acceleration stays constant. It's not perfect, but hey, it works (technically it doesn't, but it looks like it does, so we can call it a day).
-                    
+                    The output basically takes this process, does its inverse on \(a\), and then displays the result. The way I've done this is via Euler integration with a time step \( \Delta t =0.01\mathrm{s} \), so it's fairly inaccurate. I discovered that this method made the speed of the rocket increase, which is unintended, so I've done a hacky re-scaling step to make sure that the speed stays constant as long as the acceleration stays constant. It's not perfect, but hey, it works (technically it doesn't, but it looks like it does, so we can call it a day).
+                    <h1>Closing Thoughts</h1>
+                    </br>
+                    </br>
+                    Overall, from the feedback I've recieved, the explanation of this post seems to be pretty accessible, but I was hoping to include far more visual demonstrations than I was able to include. In order to be able to do this easily, I've resolved to learn Steven Wittens' tool called "mathbox", which makes animating things like this really simple. Also, in the process of changing the libraries to suit this post, I've broken the waves post, so I might choose not to show it at Expo Night.
                 </p>
             </article>
         </div>
