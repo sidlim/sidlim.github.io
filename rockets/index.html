@@ -45,7 +45,7 @@
             <div id='bannertext'>
                 <h1>Rockets</h1>
                 <input id='slider'>
-                <h5>A mini-project on acceleration</h5>
+                <h5>I've used too many competing libraries and as a result the rocket only moves while your mouse moves. Sorry.</h5>
             </div>
             <div id='bannerbkg' style='width:100%;'>
                 <canvas id='c' resize='true' keepalive='true' />
@@ -200,34 +200,45 @@
                     Next, what we've done is differentiated both sides. On the right hand side of the equation, we know that \( |\vec{r}| \) is constant. As a result, we can find out that \( |\vec{r}|^2 \) has to be constant. Since a constant quantity can't change over time, its derivative has to be zero, which explains the right hand sides of steps 2 and 3. On the left hand sides, all that's going on is an application of the <a href='https://en.wikipedia.org/wiki/Product_rule'>Product Rule</a>.
                     </br>
                     </br>
-                    Between steps 3 and 4, all we've done is some algebra to bring this expression down to something less messy. Then, in step 5, what's going on is an application of a cool substitution. Turns up, \( \frac{d\vec{r}}{dt} \) is just \( \vec{v} \). Here's a visual explanation of why:
-                </p>
-                    <div id='VDemo'>
-                        <canvas id='vexSub' resize='true'></canvas>
-                    </div>
-                    <span class='expl'></span>
-                    <div id='ctrls'>
-                        <button type='button' id='prev'> < </button>
-                        <button type='button' id='next'> > </button>
-                    </div>
-                    <script type='text/javascript'>
-                        // DOM setup:
-                        var Lbutton = document.getElementById('prev');
-                        var Rbutton = document.getElementById('next');
-                        var expl = document.getElementById('expl');
-                        var Vdemo = document.getElementById('vexSub');
-                        
-                        // Paper setup:
-                        paper.setup(Vdemo);
-                    </script>
-                <p>
+                    Between steps 3 and 4, all we've done is some algebra to bring this expression down to something less messy. Then, in step 5, what's going on is an application of a cool substitution. Turns up, \( \frac{d\vec{r}}{dt} \) is just \( \vec{v} \).
+                    </br>
+                    </br>
                     Whenever the dot product of two vectors with magnitude is 0, that implies that the two vectors are perpendiular to each other. Basically, all we have is a derivation that if the radius is constant, at any point in time, the velocity vector has to be perpendicular to the radial vector.
                 </p>
-                <h1>Making the Demo</h1>
+                <h1>Coding the Demo</h1>
                 <p>
-                    Stuff here, eventually 
+                    Firstly, <i>do</i> poke around the code for this demo. In order to do so in Chrome, just right click and hit the "Inspect" option. That should bring up the inspector, where you can tab through the different elements of this website. That'll let you view the code that I've written for this demo. If you want to toy with the demo and fix or break stuff, by all means do so. To do that, you'll need a decent knowledge of JavaScript and you'll need to open up the console in Chrome's inspector.
                     </br>
                     </br>
+                    I started out by coding a vector library in JavaScript. In case you want to poke around, it's over at <a href='https://github.com/eyamil/eyamil.github.io/blob/master/vectors.js'>http://github.com/eyamil/eyamil.github.io/vectors.js</a>. Vectors are just arrays (e.g., [1,1] is the vector at 45 degrees with a magnitude of \( \sqrt{2} \) ). It has some basic functions, a list of which is below:
+                    </br>
+                    </br>
+                    <b>Vector Sums</b> are one of the simpler things you can do with vectors. Say we have a vector \( \vec{v} = \langle x_v, y_v \rangle \). We can visualize this vector on a coordinate plane as the arrow from the origin \( (0,0) \) to the arbitrary coordinates \( (x_v,y_v) \). Let's define another vector \( \vec{u} = \langle x_u,y_u \rangle \) in the same way. Then vector sums are really simple: \( \vec{u}+\vec{v} = \langlex_u+x_v,y_u+y_v\rangle \). If we try to visualize this, all we're doing is taking one of those arrows, and putting its tail end at the tip of the second. The sum vector, often called the resultant, is the vector (or arrow) from the tail end of the second arrow to the head end of the first. This is effectively what I've done in my code, but for vectors of arbitrary many dimensions. So, for example, if we made the displacement from this computer screen to your head a vector, and the displacement from your feet to the computer screen a second vector, if we added them we would get a vector from your feet to your head, in which information about your height and position would be embedded. However, this sum vector (and the two vectors we used to make it) are 3D vectors, because space in our world is 3D (well, it's complicated).
+                    </br>
+                    If you want to play around with the dot product function, all you need to do is define two vectors of the same dimension number (arrays with the same length), and then use vsum(vector1,vector2) on them.
+                    </br>
+                    </br>
+                    <b>Scalar Multiplication</b> is another fairly simple operation that's possible using vectors. Basically, all it does is scale a vector up or down, while the angle of the vector remains unchanged.
+                    </br>
+                    In order to use the function, just define a vector, come up with a scalar (a number) and run vscale(scalar,vector).
+                    </br>
+                    </br>
+                    <b>Transposition</b> is a more complicated operation. It's defined on matrices, and basically it's defined in the following manner: $$ T\left(\begin{bmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{bmatrix}\right) = \begin{bmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{bmatrix}$$.
+                    </br>
+                    Notice that numbers in the matrix get swapped. Also, this isn't restricted to square-shaped matrices. You can transpose rectangular matrices and even vectors!
+                    </br>
+                    </br>
+                    <b>Dot Products</b>
+                    </br>
+                    </br>
+                    <b>Matrix Multiplication</b>
+                    </br>
+                    </br>
+                    <b>Vector Normalization</b>
+                    </br>
+                    </br>
+                    <b>Determinants</b>
+                    
                 </p>
             </article>
         </div>
