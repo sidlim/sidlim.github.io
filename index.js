@@ -11,7 +11,7 @@ window.addEventListener('load', loader);
         Mspacing.className = 'menuspacing';
         
         request = new XMLHttpRequest();
-        request.open('GET', 'posts.json', true);
+        request.open('GET', 'http://eyamil.github.io/posts.json', true);
         
         request.onload = function() {
             if (request.status >= 200 && request.status < 400){
