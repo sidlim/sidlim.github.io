@@ -1,5 +1,5 @@
 /* Onload stuff. */
-var postdata = null;
+var postdata;
 
 window.addEventListener('load', loader);
     function loader() {
