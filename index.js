@@ -32,7 +32,7 @@ window.addEventListener('load', loader);
                     link.appendChild(menuitem);
                     menuitem.className = 'menulink';
                     menuitem.innerText = Object.keys(data.Posts)[n];
-                    link.href = data.Pages[Object.keys(data.Posts)[n]].url;
+                    link.href = data.Posts[Object.keys(data.Posts)[n]].url;
                 };
             } else {
                 throw('null data');
