@@ -21,14 +21,14 @@ window.addEventListener('load', loader);
                     Mspacing.appendChild(link);
                     link.className = 'menulink';
                     link.innerText = Object.keys(data.Pages)[n];
-                    link.addEventListener('onclick', window.location = data.Pages.(Object.keys(data.Pages)[n]).url);
+                    link.addEventListener('onclick', window.location = data.Pages[Object.keys(data.Pages)[n]].url);
                 };
                 for (var n = 0; n < Object.keys(data.Posts).length; n++) {
                     var link = document.createElement('span');
                     Mspacing.appendChild(link);
                     link.className = 'menulink';
                     link.innerText = Object.keys(data.Posts)[n];
-                    link.addEventListener('onclick', window.location = data.Posts.(Object.keys(data.Posts)[n]).url);
+                    link.addEventListener('onclick', window.location = data.Posts[Object.keys(data.Posts)[n]].url);
                 };
             } else {
                 throw('null data');
