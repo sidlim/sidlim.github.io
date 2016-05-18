@@ -1,5 +1,5 @@
 /* Onload stuff. */
-var data = {};
+var data = {'Pages':''};
 window.addEventListener('load', loader);
     function loader() {
         var menu = document.createElement('div');
