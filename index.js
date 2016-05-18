@@ -1,4 +1,5 @@
 /* Onload stuff. */
+var data = {};
 window.addEventListener('load', loader);
     function loader() {
         var menu = document.createElement('div');
@@ -14,7 +15,7 @@ window.addEventListener('load', loader);
         request.onload = function() {
             if (request.status >= 200 && request.status < 400){
                 // Success!
-                var data = JSON.parse(request.responseText);
+                data = JSON.parse(request.responseText);
             } else {
                 // We reached our target server, but it returned an error
         }
