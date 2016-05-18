@@ -32,11 +32,9 @@ window.addEventListener('load', loader);
     
     var ms = document.getElementsByClassName('menuspacing')[0];
     
-    for (var page in postdata.Pages) {
-        var n = 0;
+    for (var n = 0; n < Object.keys(postdata.Pages).length; n++) {
         var link = document.createElement('span');
         ms.appendChild(link);
         link.className('menulink');
         link.innerText = Object.keys(postdata.Pages)[n];
-        n++;
     }
