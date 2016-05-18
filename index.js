@@ -23,7 +23,7 @@ window.addEventListener('load', loader);
                     link.innerText = Object.keys(data.Pages)[n];
                 };
             } else {
-                throw();
+                throw('null data');
         }
         console.log(data);
     };
