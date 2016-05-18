@@ -23,7 +23,7 @@ window.addEventListener('load', loader);
                     link.innerText = Object.keys(data.Pages)[n];
                 };
             } else {
-                // We reached our target server, but it returned an error
+                throw();
         }
         console.log(data);
     };
