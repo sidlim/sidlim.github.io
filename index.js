@@ -26,11 +26,13 @@ window.addEventListener('load', loader);
                     link.href = data.Pages[Object.keys(data.Pages)[n]].url;
                 };
                 for (var n = 0; n < Object.keys(data.Posts).length; n++) {
-                    var link = document.createElement('span');
+                    var link = document.createElement('a');
+                    var menuitem = document.createElement('span')
                     Mspacing.appendChild(link);
-                    link.className = 'menulink';
-                    link.innerText = Object.keys(data.Posts)[n];
-                    link.onclick = function(){window.location = data.Posts[Object.keys(data.Posts)[n]].url};
+                    link.appendChild(menuitem);
+                    menuitem.className = 'menulink';
+                    menuitem.innerText = Object.keys(data.Posts)[n];
+                    link.href = data.Pages[Object.keys(data.Posts)[n]].url;
                 };
             } else {
                 throw('null data');
