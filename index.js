@@ -1,6 +1,4 @@
 /* Onload stuff. */
-var postdata;
-
 window.addEventListener('load', loader);
     function loader() {
         var menu = document.createElement('div');
@@ -17,11 +15,10 @@ window.addEventListener('load', loader);
             if (request.status >= 200 && request.status < 400){
                 // Success!
                 var data = JSON.parse(request.responseText);
-                return(data)
             } else {
                 // We reached our target server, but it returned an error
         }
-        console.log(postdata);
+        console.log(data);
     };
     
     request.onerror = function() {
@@ -31,9 +28,9 @@ window.addEventListener('load', loader);
     console.log(request.send());
     }
     
-    for (var n = 0; n < Object.keys(postdata.Pages).length; n++) {
+    for (var n = 0; n < Object.keys(data.Pages).length; n++) {
         var link = document.createElement('span');
         Mspacing.appendChild(link);
         link.className('menulink');
-        link.innerText = Object.keys(postdata.Pages)[n];
+        link.innerText = Object.keys(data.Pages)[n];
     }
