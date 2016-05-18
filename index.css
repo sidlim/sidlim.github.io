@@ -103,17 +103,17 @@ p:first-letter  {
 .menuspacing {
     max-width: 1080px;
     margin: auto;
-    padding: 8px;
-    height: 64px;
+    padding-left: 8px;
+    height: 80px;
 }
 
 .menulink {
-    line-height: 64px;
-    height: 100%;
+    line-height: 80px;
+    height: 80px;
     padding-left: 25px;
     padding-right: 25px;
     color: orange;
-    display: block;
+    display: inline-block;
 }
 
 .menulink:hover {
