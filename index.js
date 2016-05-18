@@ -19,7 +19,7 @@ window.addEventListener('load', loader);
                 for (var n = 0; n < Object.keys(data.Pages).length; n++) {
                     var link = document.createElement('span');
                     Mspacing.appendChild(link);
-                    link.className('menulink');
+                    link.className = 'menulink';
                     link.innerText = Object.keys(data.Pages)[n];
                 };
             } else {
