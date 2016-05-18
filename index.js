@@ -21,6 +21,7 @@ window.addEventListener('load', loader);
             } else {
                 // We reached our target server, but it returned an error
         }
+        console.log(postdata);
     };
     
     request.onerror = function() {
