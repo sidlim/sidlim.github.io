@@ -106,3 +106,11 @@ p:first-letter  {
     padding: 8px;
     height: 64px;
 }
+
+.menulink {
+    line-height: 64px;
+    height: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: orange;
+}
