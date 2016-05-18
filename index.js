@@ -30,7 +30,7 @@ window.addEventListener('load', loader);
     request.send();
     }
     
-    var ms = document.getElementByClassName('menuspacing')[0];
+    var ms = document.getElementsByClassName('menuspacing')[0];
     
     for (var page in postdata.Pages) {
         var n = 0;
