@@ -113,6 +113,7 @@ p:first-letter  {
     padding-left: 25px;
     padding-right: 25px;
     color: orange;
+    display: block;
 }
 
 .menulink:hover {
