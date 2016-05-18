@@ -114,3 +114,8 @@ p:first-letter  {
     padding-right: 25px;
     color: orange;
 }
+
+.menulink:hover {
+    color: black;
+    background-color: rgba(205,205,205,1);
+}
