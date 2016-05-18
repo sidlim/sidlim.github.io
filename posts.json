@@ -1,7 +1,4 @@
 {
-    "Home": {
-        "url": "http://eyamil.github.io/index.html"
-    },
     "Posts": {
         "Rockets": {
             "url": "http://eyamil.github.io/rockets/index.html",
@@ -11,7 +8,7 @@
     },
     "Pages": {
         "Home": {
-            "url": "index.html"
+            "url": "http://eyamil.github.io/index.html"
         }
     }
 }
