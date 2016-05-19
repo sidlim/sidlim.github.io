@@ -42,17 +42,17 @@
                 }
                 
                 var c1 = new paper.Point(canvas.width/2, canvas.height/16);
-                var c2 = new paper.Point(canvas.width/2 - 7*Math.sqrt(3)/32*canvas.width/32, 23*canvas.height/32);
-                var c3 = new paper.Point(canvas.width/2 + 7*Math.sqrt(3)/32*canvas.width/32, 23*canvas.height/32);
+                var c2 = new paper.Point(canvas.width/2 - 7*Math.sqrt(3)*canvas.width/32, 23*canvas.height/32);
+                var c3 = new paper.Point(canvas.width/2 + 7*Math.sqrt(3)*canvas.width/32, 23*canvas.height/32);
                 
                 var corners = [c1, c2, c3];
                 
-                var seed = new paper.Point(canvas.width/2, canvas.height/2);
+                var seedk = new paper.Point(canvas.width/2, canvas.height/2);
                 
                 function placept() {
                     var c = corners[Math.floor(3*Math.random())];
-                    seed = new paper.Point((c + seed) / 2);
-                    drawpt(seed);
+                    seedk = new paper.Point((c + seedk) / 2);
+                    drawpt(seedk);
                 }
                 
                 var x = window.setInterval(function() {placept();}, 10);
