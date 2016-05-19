@@ -51,7 +51,7 @@
                 
                 function placept() {
                     var c = corners[Math.floor(3*Math.random())];
-                    seedk = new paper.Point((c + seedk) / 2);
+                    seedk = new paper.Point((c.add(seedk)).divide(2));
                     drawpt(seedk);
                 }
                 
