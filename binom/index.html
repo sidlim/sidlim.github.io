@@ -9,6 +9,17 @@
         <script type='text/javascript' src='../vectors.js'></script>
         <script type='text/javascript' src='../paper-full.min.js'></script>
         <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <style type='text/css'>
+            #c {
+                height: 100%;
+                width: 100%;
+            }
+            
+            #bannerbkg {
+                z-index: 1;
+            }
+            
+        </style>
     </head>
     <body>
         <div id='banner'>
@@ -18,8 +29,19 @@
                 <h5>How it's used, where it comes from, and other interesting rambling</h5>
             </div>
             <div id='bannerbkg' style='width:100%;'>
-                <!-- Pick a good image for this later -->
+                <canvas id='c' resize='true'></canvas>
             </div>
+            <script type='text/javascript'>
+                var canvas = document.getElementById('c');
+                paper.setup(canvas);
+                
+                function drawpt(x,y) {
+                    var circle = new Shape.Circle(new Point(x, y), 1);
+                }
+                
+                
+                
+            </script>
         </div>
         <div id='content'>
             <article id='post'>
@@ -144,10 +166,16 @@
                     $$e^{i(n\theta)}=(e^{i\theta})^n$$
                     From here, we can replace the imaginary exponential with some trigonometric functions:
                     $$\cos(n\theta)+i\sin(n\theta)=(\cos(\theta)+i\sin(\theta))^n$$
-                    And from here onward, all we need to do is expand the right hand side, and pick either just all of the imaginary terms (for \(\sin(n\theta)\)) or all of the real terms (for \(\cos(n\theta)\)).
+                    And from here onward, all we need to do is expand the right hand side, and pick either just all of the imaginary terms (for \( \sin(n\theta) \)) or all of the real terms (for \( \cos(n\theta) \)).
                     </br>
-                    When n is an integer, this is a finite sum, and lots of interesting results are abound. First, you'll notice that the polynomials you generate using this allow you to solve for \(sin\left(\frac{\theta}{n}\right)\) and \(cos\left(\frac{\theta}{n}\right)\), and with some extra manipulation it's possible to show that all trig functions of angles that are rational multiples of pi are algebraic numbers - as in, they can be expressed as roots of a polynomial.
+                    When n is an integer, this is a finite sum, and lots of interesting results are abound. First, you'll notice that the polynomials you generate using this allow you to solve for \(\sin\left(\frac{\theta}{n}\right)\) and \(\cos\left(\frac{\theta}{n}\right)\), and with some extra manipulation it's possible to show that all trig functions of angles that are rational multiples of pi are algebraic numbers - as in, they can be expressed as roots of a polynomial.
                     </br>
+                </p>
+                <h1>The Header</h1>
+                <p>
+                    The last question that remains is "How's the header related?"
+                    </br>
+                    Turns up, if you take Pascal's Triangle and color all of the even coefficients white and color all of the odd coefficients black, you end up getting the picture in the header. It's a cool-looking fractal, and I was seriously out of things to use as headers, so I decided I'd make a simulation.
                 </p>
                 <h1>Closing Thoughts</h1>
                 <p>
