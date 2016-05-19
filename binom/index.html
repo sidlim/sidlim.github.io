@@ -34,8 +34,51 @@
                 <p>
                     Binomial coefficients (also known as the choose function) is defined in the following way:
                     $$\mathrm{ }_n C_k=\binom{n}{k}=\frac{n!}{(n!)((k-n)!)}$$
-                    Notice that this doesn't mean anything useful yet. We'll eventually explain the definition, but don't worry about making sense of this definition right now.
-                    There are, however, a couple <i>useful</i> definitions. The first is the most relevant: \( \binom{n}{k} \) tells us the number of different ways that you can choose \(k\) elements from a set of \(n\) distinct elements. So, for example, if we had the set \( \{ A,B,C,D \} \), there are 6 ways to pick sets of two elements. Here, let's enumerate them just to prove it: \( \{A,B\} \), \( \{A,C\} \), \( \{A,D\} \), \( \{B,C\} \), \( \{B,D\} \), \( \{C,D\} \). Note that order doesn't matter, so \( \{A,D\}=\{D,A\} \) and we don't count it twice.
+                    Notice that this doesn't mean anything useful yet. We'll eventually explain the definition, but don't worry about making sense of this definition right now. Just notice that for the most part, this only makes sense with integer \(n\) and \(k\). (Turns up, this is a bit of a lie, because there's a function called the gamma function, \( \Gamma(x) \), that lets us find factorials of noninteger \(x\), but there's an easier way to do this that we'll cover later.)
+                    There are, however, a couple <i>useful</i> interpretations. 
+                </p>
+                <h1>Pascal's Triangle</h1>
+                <p>
+                    The first is Pascal's Triangle. This is a nice way to compute values of a binomial coefficient, mainly because it's visual and concrete.
+                    </br>
+                    You've probably run into this before. Here's what it looks like:
+                    </br>
+                    \(0.\) <center>\( 1 \)</center></br>
+                    \(1.\) <center>\(1 \ 1 \)</center></br>
+                    \(2.\) <center>\(1 \ 2 \ 1 \)</center></br>
+                    \(3.\) <center>\(1 \ 3 \ 3 \ 1 \)</center></br>
+                    \(4.\) <center>\(1 \ 4 \ 6 \ 4 \ 1 \)</center></br>
+                    \(5.\) <center>\(1 \ 5 \ 10 \ 10 \ 5 \ 1 \)</center></br>
+                    If you want to find \( \binom{n}{k} \), just head over to the \(n\)'th row and grab the \(k-1\)'th number. 
+                    </br>
+                    And here's how you create it:
+                    </br>
+                    <!-- Center a gif of Pascal's Triangle (https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)-->
+                    </br>
+                </p>
+                <h1>The Choose function</h1>
+                <p>
+                    The second is the choose function: \( \binom{n}{k} \) tells us the number of different ways that you can choose \(k\) elements from a set of \(n\) distinct elements. So, for example, if we had the set \( \{ A,B,C,D \} \), there are 6 ways to pick sets of two elements. Here, let's enumerate them just to prove it: \( \{A,B\} \), \( \{A,C\} \), \( \{A,D\} \), \( \{B,C\} \), \( \{B,D\} \), \( \{C,D\} \). Note that order doesn't matter, so \( \{A,D\}=\{D,A\} \) and we don't count it twice.
+                </p>
+                <h1>Use</h1>
+                <p>
+                    So now, the obvious question is: How is this useful?
+                    </br>
+                    The binomial coefficients show up incredibly often. Sometimes they can make what seem to be unexpected appearances, but I've found that their appearances are usually easy to make sense of. Anyways, enough rambling.
+                    </br>
+                    Say we had a power of a binomial. Let's do this symbolically instead of plugging in numbers: \( (a+b)^n \).
+                    </br>
+                    There's a nice and useful theorem called <b>the binomial theorem</b> that tells us the following:
+                    $$(a+b)^n=\sum_{k=1}^{n}\binom{n}{k}a^{n-k}b^{k}$$
+                    This compact representation of this theorem goes against pretty much every intention I wrote this blog with, but unfortunately I can't find a simple but concise way to explain it. As a bittersweet compromise, I'll offer some examples:
+                    $$(a+b)^0=\binom{0}{0}a^0b^0=\red{1}$$
+                    $$(a+b)^1=\binom{1}{0}a^1b^0+\binom{1}{1}a^0b^1=\red{1}a+\red{1}b$$
+                    $$(a+b)^2=\binom{2}{0}a^2b^0+\binom{2}{1}a^1b^1+\binom{2}{2}a^0b^2=\red{1}a^2+\red{2}ab+\red{1}b^2$$
+                    $$(a+b)^3=\binom{3}{0}a^3b^0+\binom{3}{1}a^2b^1+\binom{3}{2}a^1b^2+\binom{3}{3}a^0b^3=\red{1}a^3+\red{3}a^2b+\red{3}ab^2+\red{1}b^3$$
+                    $$\cdots$$
+                    </br>
+                    You can probably see where the binomial coefficients are popping up. This is also why we sometimes refer to \(\binom{n}{k}\) as <i>the binomial coefficients</i>.
+                    
                 </p>
             </article>
         </div>
