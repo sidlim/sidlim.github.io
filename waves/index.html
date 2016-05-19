@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>The Binomial Theorem</title>
+        <title>Waves</title>
         <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
         <link rel='stylesheet' href='../index.css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -29,7 +29,64 @@
         </div>
         <div id='content'>
             <article id='post'>
-                
+                <h1>Background</h1>
+                <p>
+                    Here's a great Youtube video that talks about how we percieve sound:
+                    </br>
+                    <center><iframe width="560" height="315" src="https://www.youtube.com/embed/cyW5z-M2yzw" frameborder="0" allowfullscreen></iframe></center>
+                    TL;DR: </br>
+                    Notes have components called frequencies. A note with a larger frequency sounds higher. Basically, when we listen to chords (combinations of notes), we tend to enjoy them when the frequencies of the notes involved come close to some rational number with a simple denominator (e.g., \(\frac{1}{3}\)).
+                </p>
+                <h1>Pressure</h1>
+                <p>
+                    Sounds are essentially fluctuations in air pressure that we're able to percieve. If we graphed the air pressure against time for some note, we'd get a graph like this:
+                    <center><img src='https://s3.amazonaws.com/grapher/exports/wdpudcbi3m.png' height='400px' width='704px' /></center>
+                    The amplitude of this note, seen visually as the height of the wave, corresponds to the loudness of the note. The frequency of the note, seen visually as the number of cycles of teh wave that can fit into 1 second, corresponds to the pitch of the note.
+                    <br>
+                    On a side note, this kind of graph of pressure against time is called a <b>waveform</b>.
+                    </br>
+                    Now, here's a graph of the waveform of two notes being played together:
+                    <center><img src='https://s3.amazonaws.com/grapher/exports/zmas6yl8jd.png' height='400px' width='704px' /></center>
+                    If you were to recreate this graph, you'd find that the two waves you need to do so are \(\sin(x)\) and \(\frac{3}{20}\sin(5x)\). To graph this, you simply add together those two waves, and you can recreate the waveform of the chord we're looking at. Notice that simply by looking at the graph, it seems pretty hard to recreate what the original information was.
+                    </br>
+                    Notice that we just did the opposite of what our brains do with sound: Given the waves' frequencies (\(1\) and \(5\)) and amplitudes (\(1\) & \(\frac{3}{20}\)), we were able to recreate the waveform.
+                </p>
+                <h1>Fourier Synthesis</h1>
+                <p>
+                    Turns up, there's an awesome mathematical tool that we can use to do the same thing. It's called Fourier Synthesis, and the notation looks like this:
+                    $$\S(t)=\int_{-\infty}^{\infty}a(\omega)e^{i\omega t}d\omega$$
+                    There's a huge volume of information in this notation, so let's deconstruct it a bit.
+                    </br>
+                    \(S(t)\) is the waveform's function. It's basically the pressure \(S\) at time \(t\).
+                    </br>
+                    \(a(\omega)\) is the amplitude function. Basically, given the frequency, \(\omega\), it will tell you what the amplitude (\(a\)) of the wave of that frequency is.
+                    </br>
+                    \(e^{ist}\) is a wave. It's more obvious when you take into account the fact that \(e^{it}=\cos(t)+i\sin(t)\).
+                    Finally, \(\int \ \ \ \ \ \ d\omega\) just means that we're taking the expressions at all of the possible values of s, and adding them together and rescaling them so that our result is finite. In this context, we're just adding up a bunch of waves with different frequencies.
+                    </br>
+                    </br>
+                    How do we know that this works? Well, a mathematician named Joseph Fourier showed that any periodic function can be written as a sum of sine and cosine waves (a Fourier Series). In notation, this is expressed as the following:
+                    $$\forall f \in P \ \ \ \ \ \ \ \ f(t)=\sum_{n=0}^{\infty}a_n\sin(nt)+b_n\cos(nt)$$
+                    If you've worked with integrals before, you'll recognize that Fourier Synthesis is simply the Fourier Series extended to cover noninteger frequencies. Turns up this extension gives it a nice property: the function we want to write with a Fourier Synthesis no longer needs to be periodic.
+                </p>
+                <h1>Fourier Transforms</h1>
+                <p>
+                    If you're reading along up until here, you've probably noticed that I've been avoiding my main point of curiosity: I posed the question "How do our brains find out what frequency notes are in a chord?", and we've spent all of this time building waveforms given the frequencies and amplitudes.
+                    </br>
+                    Luckily, it hasn't been a complete waste. There's a mathematical tool, the inverse of the Fourier Synthesis, called the Fourier Transform. It allows us to do the opposite of what we just did: given a waveform, we can find out what frequency waves are in it. Here's the notation:
+                    $$a(\omega)=\int_{-\infty}^{\infty}S(t)e^{-i\omega t}dt$$
+                    Notice that this looks very similar to the Fourier Synthesis. The amplitude \(a(\omega)\) and pressure \(S(t)\) functions have swapped places, and an exponent is negative.
+                    </br>
+                    Turns up, this negative exponent does all of the work for us. If we think about a waveform as a bunch of amplitudes multiplied by a bunch of waves of different frequencies, the negative exponent is there to divide out the waves, leaving us with just the amplitudes.
+                    </br>
+                    Incidentally, this is how things like band-pass filters work. Given a waveform, they run the Fourier Transform on the waveform, figure out what frequencies need to be played at their respective amplitudes, and then send the frequency and amplitude data on its way. If the filter in question is a high-pass filter, all of the frequencies below some threshhold value will simply be ignored, so that the output only gets the high frequency waves, and vice versa for a low-pass filter.
+                    </br> Additionally, you might notice that our integral is infinite. Luckily, we don't need an infinite amount of data to deal with this. We can get an approximation by using some finite interval instead of integrating from \(-\infty\) to \(\infty\). This is typically called <i>sampling</i>.
+                    </br> However, depending on our data sets, this leaves us with a limit: Given a restricted data set, we can only find out a limited amount of information about the notes being played. This is called a <b>Gabor Limit</b>. (If you're curious, definitely do look that up)
+                </p>
+                <h1>How do we percieve sounds?</h1>
+                <p>
+                    Until very recently, researchers thought the brain uses something akin to a Fourier Transform to percieve notes. This would imply that we never really hear music in all of its detail, because of the existence of a Gabor Limit. However, excitingly enough, recently in a study, researchers found that when humans and machines that used the Fourier Transform were compared, humans were able to beat the Gabor Limits every time, indicating that a process other than the Fourier Transform is at play here. This is exciting for two reasons: perhaps we <i>can</i> appreciate music for all of its complexity, and secondly, there's new mathematics in this area that remains to be discovered.
+                </p>
             </article>
         </div>
     </body>
