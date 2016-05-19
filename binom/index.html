@@ -53,6 +53,7 @@
                     var c = corners[Math.floor(3*Math.random())];
                     seedk = new paper.Point((c.add(seedk)).divide(2));
                     drawpt(seedk);
+                    paper.view.draw();
                 }
                 
                 var x = window.setInterval(function() {placept();}, 2);
