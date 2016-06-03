@@ -18,7 +18,13 @@
     },
     "Pages": {
         "Home": {
-            "url": "http://eyamil.github.io/index.html"
+            "url": "http://eyamil.github.io/"
+        },
+        "Projects": {
+            "url": "http://eyamil.github.io/projects/"
+        },
+        "Ideas": {
+            "url": "http://eyamil.github.io/ideas/"
         }
     }
 }
