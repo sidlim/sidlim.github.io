@@ -50,7 +50,7 @@
                 var seedk = new paper.Point(canvas.width/2, canvas.height/2);
                 
                 function placept() {
-                    var c = corners[Math.floor(corners.length()*Math.random())];
+                    var c = corners[Math.floor(corners.length*Math.random())];
                     seedk = new paper.Point((c.add(seedk)).divide(2));
                     drawpt(seedk);
                     paper.view.draw();
