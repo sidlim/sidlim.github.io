@@ -1,17 +1,17 @@
 {
     "Posts": {
         "Rockets": {
-            "url": "http://eyamil.github.io/rockets/index.html",
+            "url": "http://eyamil.github.io/rockets/",
             "desc": "A demo in Centripetal Acceleration.",
             "date": "3/21/2016"
         },
         "Binomial": {
-            "url": "http://eyamil.github.io/binom/index.html",
+            "url": "http://eyamil.github.io/binom/",
             "desc": "Use, Origin, and more interesting stuff",
             "date": "4/14/2016"
         },
         "Waves": {
-            "url": "http://eyamil.github.io/waves/index.html",
+            "url": "http://eyamil.github.io/waves/",
             "desc": "How do we recognize different tones?",
             "date": "5/14/2016"
         }
