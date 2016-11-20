@@ -1,0 +1,19 @@
+{
+	"menu": {
+		"Home": {
+			"type": "page",
+			"url": "../"
+		},
+		"Budding Ideas": {
+			"type": "page"
+		},
+		"Explored Ideas": {
+			"type": "category",
+			"links": {}
+		},
+		"Projects": {
+			"type": "category",
+			"links": {}
+		}
+	}
+}
