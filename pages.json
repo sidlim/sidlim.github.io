@@ -5,13 +5,16 @@
 			"url": "../"
 		},
 		"Ideas": {
-			"type": "page"
+			"type": "page",
+			"url": "/ideas/"
 		},
 		"Posts": {
-			"type": "page"
+			"type": "page",
+			"url": "/posts/"
 		},
 		"Projects": {
-			"type": "page"
+			"type": "page",
+			"url": "/projects/"
 		}
 	}
 }

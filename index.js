@@ -5,12 +5,6 @@ var styles = document.createElement('link');
 	styles.type = 'text/css';
 	styles.href = 'index.css';
 
-// Add MathJax
-var MathJaxSC = document.createElement('script');
-	document.head.appendChild(MathJaxSC);
-	MathJaxSC.type = 'text/javascript';
-	MathJaxSC.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-
 // Load pages.json
 var pages;
 	var xhr = new XMLHttpRequest();
@@ -25,3 +19,10 @@ var pages;
 		}
 	}
 	xhr.send();
+	console.log(pages);
+
+// Add MathJax
+var MathJaxSC = document.createElement('script');
+	document.head.appendChild(MathJaxSC);
+	MathJaxSC.type = 'text/javascript';
+	MathJaxSC.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML';
