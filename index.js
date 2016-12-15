@@ -1,8 +1,9 @@
 // Add stylesheet
 var styles = document.createElement('link');
 	document.head.appendChild(styles);
+	styles.rel = 'stylesheet';
 	styles.type = 'text/css';
-	styles.rel = 'index.css';
+	styles.href = 'index.css';
 
 // Add MathJax
 var MathJaxSC = document.createElement('script');
