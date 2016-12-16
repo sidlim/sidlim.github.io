@@ -27,11 +27,32 @@ p {
 
 .title {
 	text-align: center;
+}
+
+.underline {
 	border-bottom-color: rgba(80, 80, 80, 0.75);
 	border-bottom-style: solid;
 	border-width: 1px;
 }
 
-.menu {
+.menucontainer {
 	margin: 0 auto 0 auto;
+}
+
+.menu {
+	list-style: none;
+	margin: 0 auto 0 auto;
+	padding: 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+.menuelement {
+	display: inline-block;
+}
+
+.menuelement a {
+	display: block;
+	padding: 0.5em 1em;
+	color: black;
 }
