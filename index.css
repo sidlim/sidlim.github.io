@@ -31,3 +31,7 @@ p {
 	border-bottom-style: solid;
 	border-width: 1px;
 }
+
+.menu {
+	margin: 0 auto 0 auto;
+}
