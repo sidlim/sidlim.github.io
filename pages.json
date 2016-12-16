@@ -2,7 +2,7 @@
 	"directories": {
 		"Home": {
 			"type": "page",
-			"url": "./"
+			"url": "../"
 		},
 		"Ideas": {
 			"type": "page",
