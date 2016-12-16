@@ -24,13 +24,13 @@ var pages;
 		var list = document.createElement('ul');
 			menuElement.appendChild(list);
 			list.className = 'menu';
-		var labels = Object.keys(pages.menu);
+		var labels = Object.keys(pages.directories);
 		for (i = 0; i < labels.length; i++) {
 			var menuEl = document.createElement('li');
 				list.appendChild(menuEl);
 				menuEl.className = 'menuelement';
 				var link = document.createElement('a');
-				link.href = pages.menu[labels[i]].url;
+				link.href = pages.directories[labels[i]].url;
 				link.innerText = labels[i];
 				link.className = 'menulink';
 				menuEl.appendChild(link);

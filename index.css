@@ -32,7 +32,7 @@ p {
 .underline {
 	border-bottom-color: rgba(80, 80, 80, 0.75);
 	border-bottom-style: solid;
-	border-width: 1px;
+	border-bottom-width: 1px;
 }
 
 .menucontainer {
@@ -49,6 +49,10 @@ p {
 
 .menuelement {
 	display: inline-block;
+}
+
+.menuelement:hover {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .menuelement a {
