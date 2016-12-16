@@ -6,15 +6,15 @@
 		},
 		"Ideas": {
 			"type": "page",
-			"url": "ideas/"
+			"url": "../ideas/"
 		},
 		"Posts": {
 			"type": "page",
-			"url": "posts/"
+			"url": "../posts/"
 		},
 		"Projects": {
 			"type": "page",
-			"url": "projects/"
+			"url": "../projects/"
 		}
 	}
 }
