@@ -1,9 +1,16 @@
+// Base HREF fixing, so that we can run this locally without issues:
+var host = window.location.host;
+	if (window.location.host == '') {
+		host = window.location.pathname
+	}
+	document.write('<base href="'+ window.location.protocol + '//' + host + '" >');
+
 // Add stylesheet
 var styles = document.createElement('link');
 	document.head.appendChild(styles);
 	styles.rel = 'stylesheet';
 	styles.type = 'text/css';
-	styles.href = '../index.css';
+	styles.href = 'index.css';
 
 // Load pages.json
 var pages;
