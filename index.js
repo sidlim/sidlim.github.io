@@ -1,7 +1,7 @@
 // Base HREF fixing, so that we can run this locally without issues:
 var host = window.location.host;
 	if (window.location.host == '') {
-		host = window.location.pathname
+		host = window.location.pathname;
 	}
 	document.write('<base href="'+ window.location.protocol + '//' + host + '" >');
 
