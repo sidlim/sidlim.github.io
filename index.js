@@ -10,7 +10,7 @@ var styles = document.createElement('link');
 	document.head.appendChild(styles);
 	styles.rel = 'stylesheet';
 	styles.type = 'text/css';
-	styles.href = './index.css';
+	styles.href = '/index.css';
 
 // Load pages.json
 var pages;
