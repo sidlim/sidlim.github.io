@@ -10,12 +10,12 @@ var styles = document.createElement('link');
 	document.head.appendChild(styles);
 	styles.rel = 'stylesheet';
 	styles.type = 'text/css';
-	styles.href = 'index.css';
+	styles.href = './index.css';
 
 // Load pages.json
 var pages;
 	var xhr = new XMLHttpRequest();
-	xhr.open('get', 'http://eyamil.github.io/pages.json',true);
+	xhr.open('get', '/pages.json',true);
 	xhr.responseType = 'json';
 	xhr.onload = function() {
 		if (xhr.status = 200) {
