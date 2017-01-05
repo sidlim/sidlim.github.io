@@ -1,7 +1,6 @@
 // Webserver Setup:
 var fs = require('fs');
 var http = require('http');
-var path = require('path')
 const PORT = process.env.PORT || 8080;
 
 function handleRequest(request, response){
