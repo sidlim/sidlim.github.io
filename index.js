@@ -1,9 +1,8 @@
-// Base HREF fixing, so that we can run this locally without issues:
-var host = window.location.host;
-	if (window.location.host == '') {
-		host = window.location.pathname;
-	}
-	document.write('<base href="'+ window.location.protocol + '//' + host + '" >');
+// Viewport scaling, for mobile browsers
+var vp = document.createElement('meta');
+	document.head.appendChild(vp);
+	vp.name = 'viewport';
+	vp.content = 'width=device-width, initial-scale=1.0';
 
 // Add stylesheet
 var styles = document.createElement('link');
