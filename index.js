@@ -34,11 +34,9 @@ var pages;
 		for (i = 0; i < labels.length; i++) {
 			var menuEl = document.createElement('li');
 				list.appendChild(menuEl);
-				menuEl.className = 'menuelement';
 				var link = document.createElement('a');
 				link.href = pages.directories[labels[i]].url;
 				link.innerText = labels[i];
-				link.className = 'menulink';
 				menuEl.appendChild(link);
 
 		}
@@ -50,4 +48,4 @@ var pages;
 var MathJaxSC = document.createElement('script');
 	document.head.appendChild(MathJaxSC);
 	MathJaxSC.type = 'text/javascript';
-	MathJaxSC.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+	MathJaxSC.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';

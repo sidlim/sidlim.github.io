@@ -51,15 +51,15 @@ p {
 	text-align: center;
 }
 
-.menuelement {
+.menu > li {
 	display: inline-block;
 }
 
-.menuelement:hover {
+.menu > li:hover {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 
-.menuelement a {
+.menu > li > a {
 	display: block;
 	padding: 0.5em 1em;
 	color: black;
