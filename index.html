@@ -1,16 +1,60 @@
 <html>
     <head>
         <title>Home</title>
-        <script type='text/javascript' src='index.js'></script>
+        <link rel='stylesheet' type='text/css' href='main.css' />
+        <meta name="viewport" content = "width = device-width, initial-scale = 1, user-scalable = no" />
     </head>
     <body>
-		<div class='title underline'>
-			<h1>Title Goes Here</h1>
-		</div>
-		<div class='menucontainer underline'>
-			<!-- Menu container that will be polyfilled by index.js based on the contents of pages.json -->
-		</div>
-		<p>	Hi, I'm Sid. I study biology at UCSD. Some of my hobbies are math and computer science. Occasionally, you'll see me write about these topics.</p>
+        <div class='slides'>
+            <div class='title'>
+                <code class='text'>
+                    <span class='flicker large'> eyamil </span>
+                    <span> 0x06c1 </span>
+                    <p class='subtext'>UCSD 2020. BIOLOGY, PROGRAMMING, AND MATH.</p>
+                </code>
+            </div>
+            <div id='projects'>
 
+            </div>
+            <div id='math'>
+
+            </div>
+            <div id='thoughts'>
+
+            </div>
+        </div>
+        <script type='text/javascript'>
+            // Title work:
+                var title = document.getElementsByClassName('title')[0];
+                    var ontextel = title.getElementsByClassName('flicker')[0];
+                    var ontext = ontextel.innerText;
+                    var offtextel = ontextel.nextElementSibling;
+                    var offtext = offtextel.innerText;
+                        while (ontextel.lastChild) {
+                            ontextel.removeChild(ontextel.lastChild);
+                        }
+                        while (offtextel.lastChild) {
+                            offtextel.removeChild(offtextel.lastChild);
+                        }
+                        for (var i = 0; i < ontext.length; i++) {
+                            var sp = document.createElement('span');
+                            var char = document.createTextNode(ontext[i]);
+                            var spoff = document.createElement('span');
+                            var charoff = document.createTextNode(offtext[i]);
+                            var style = Math.floor(2*Math.random())+1;
+                            sp.appendChild(char);
+                            ontextel.appendChild(sp);
+                            sp.style.animationName = 'flickeron' + style;
+                            sp.style.animationDuration = 10+20*Math.random() + 's';
+                            sp.style.animationOffset = 15*Math.random() + 's';
+                            sp.style.animationDirection = (Math.round(2*Math.random()) == 1) ? 'normal' : ((Math.round(2*Math.random()) == 1) ? 'alternate' : 'reverse');
+                            spoff.appendChild(charoff);
+                            offtextel.appendChild(spoff);
+                            spoff.style.animationName = 'flickeroff' + style;
+                            spoff.style.animationDuration = sp.style.animationDuration;
+                            spoff.style.animationOffset = sp.style.animationOffset;
+                            spoff.style.animationDirection = sp.style.animationDirection;
+                        }
+        </script>
     </body>
 </html>
