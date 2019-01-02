@@ -1,3 +1,27 @@
 body {
+    display: grid;
+    grid-template-rows: 40px auto 40px;
+    grid-template-columns: 1fr [nav] 1fr auto 1fr 1fr;
+    grid-template-areas: 
+        "left-header header header header right-header"
+        "left-space  nav content right-space right-space"
+        "left-footer footer footer footer right-footer";
+    line-height: 1.6em;
+    font-size: 1.2em;
+    color: rgba(68,68,68,1);
+}
 
+h1,h2,h3 {
+    line-height: 1.2em;
+}
+
+article {
+    grid-area: content;
+    padding: 10px;
+    max-width: 720px;
+}
+
+nav {
+    display: none;
+    grid-area: nav;
 }
