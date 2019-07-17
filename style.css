@@ -3,6 +3,7 @@ body {
     line-height: 1.6em;
     font-size: 1.2em;
     color: rgba(68,68,68,1);
+    background-color: rgba(248,248,248,1);
 }
 
 h1,h2,h3 {
