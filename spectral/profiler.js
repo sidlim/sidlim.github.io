@@ -17,7 +17,7 @@ let visCtx = spec.getContext("2d");
 // Audio Setup:
 let audCtx = new AudioContext();
 let analyzer = audCtx.createAnalyser();
-MediaDevices.getUserMedia({audio: true, video: false}).then(
+navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(
     function(stream) {
         let source = audCtx.createMediaStreamSource(stream);
         source.connect(analyzer);
