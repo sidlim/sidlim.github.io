@@ -2,8 +2,6 @@ body {
     display: grid;
     line-height: 1.6em;
     font-size: 1.2em;
-    color: rgba(68,68,68,1);
-    background-color: rgba(248,248,248,1);
 }
 
 h1,h2,h3 {
@@ -22,4 +20,14 @@ nav {
 
 nav > ul > li {
     list-style-type: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline dotted;
+}
+
+a:hover {
+    background-color: rgba(120, 120, 120, 0.2);
+    text-decoration: underline;
 }

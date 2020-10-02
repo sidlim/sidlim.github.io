@@ -1,0 +1,13 @@
+body {
+    color: rgba(68,68,68,1);
+    background-color: rgba(248,248,248,1);
+}
+
+@media(prefers-color-scheme: dark) {
+
+    body {
+        color: rgba(248,248,248,1);
+        background-color: rgba(40, 40, 40,1);
+    }
+
+}
