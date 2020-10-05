@@ -5,9 +5,8 @@ body {
     font-size: 1.2em;
 }
 
-h2 {
-    line-height: 1.2em;
-    font-weight: normal
+section {
+    padding-bottom: 0.2em;
 }
 
 article {
@@ -22,6 +21,11 @@ nav {
 
 nav > ul > li {
     list-style-type: none;
+}
+
+h2 {
+    line-height: 1.2em;
+    font-weight: normal
 }
 
 a {
