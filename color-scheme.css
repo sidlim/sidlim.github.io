@@ -3,6 +3,10 @@ body {
     background-color: rgba(248,248,248,1);
 }
 
+hr {
+    border-color: rgb(168, 168, 186);
+}
+
 @media(prefers-color-scheme: dark) {
 
     body {
