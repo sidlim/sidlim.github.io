@@ -12,16 +12,23 @@
     <body>
         <nav>
             <ul>
-                <li><a href='/'>About Me</a></li>
+                <li><a href='/'>Home</a></li>
                 <li><a href='resume.pdf'>Resume</a></li>
                 <li><a href='https://photos.app.goo.gl/9T4vCW6RxxV7BSfW9'>Photography</a></li>
                 <li><a href='experiments.html'>Experiments</a></li>
                 <li><a href='mailto:slimaye@ucsd.edu'>Get in Touch</a></li>
             </ul>
         </nav>
+        <header>
+            {% if page.header %}
+                {% include {{ page.header }} %}
+            {% else %}
+                <h1> {{ page.title }} </h1>
+            {% endif %}
+        </header>
         <article>
         
-        {{ content }}
+        {{ page.content }}
         
         </article>
     </body>
