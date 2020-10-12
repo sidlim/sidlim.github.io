@@ -1,0 +1,38 @@
+---
+title: Low Poly Generator
+layout: default
+category: projects
+description: Making low-poly images out of photographs
+---
+<section>
+    &emsp; Low-poly backgrounds, when done right, look pretty cool. I built a
+    tool to make them a couple years back, but I was dissatisfied because all
+    the simple designs (geometric backgrounds, colored triangles, etc.) seemed
+    a bit boring, and it was exceedingly hard to recreate real-life scenes with
+    the tool I had built.
+    <br>
+    &emsp; Throughout college I amassed a library of photos I had taken, and it
+    seemed like the right time to build something that could give them a 
+    low-poly style. This new tool lets you put in a picture and pick the 
+    vertices of your triangles, and then it generates a low-poly cover of the
+    image that you can flatten onto the image with your favorite photo editor.
+    It does a Delaunay Triangulation on those vertices, and each triangle's
+    color is set to be the color of the pixel at the centroid (center of mass)
+    of the triangle.
+    <br>
+    &emsp; Here's the results of using the tool on a photo of a brown spotted
+    jellyfish at the Monterey Bay Aquarium:
+    <img src="/img/low_poly_jelly.jpg"/>
+    <br>
+    &emsp; If you look close, you can see that I've done a pretty sloppy job
+    near the bottom right corner. It's covered up by the dock on my phone
+    so I've left it as it is.
+    <br>
+    <br>
+</section>
+<section>
+    &emsp; Eventually I'll give the tool a little more visual polish, and one of my
+    goals is to automate point selection based off of colors and edges, but for
+    now, here it is:
+    <a href="/demos/low-poly.html">Make your own low-poly image!</a>
+</section>

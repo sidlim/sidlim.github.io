@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title> Low-Poly Creator </title>
+        <style type="text/css">
+            #container {
+                position: relative;
+            }
+
+            canvas {
+                position: absolute;
+                top: 0px;
+            }
+
+            #controls {
+                position: sticky;
+                bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="container">
+            
+            <canvas id="raw_image" height="0px" width="0px"></canvas>
+            <canvas id="processed" height="0px" width="0px"></canvas>
+        </div>
+        <div id="controls">
+            <input type="file" accept="image/*" />
+            <button> Save as Image </button>
+        </div>
+
+        <script src="https://unpkg.com/delaunator@4.0.1/delaunator.js"></script>
+        <script type="text/javascript">
+        
+            // Var setup:
+
+            let input_canvas = document.querySelector('#raw_image');
+            let input_ctx = input_canvas.getContext('2d');
+            let file_input = document.querySelector('input');
+            let save_btn = document.querySelector('button');
+            let src_image = new Image();
+            let img_data = null;
+            let orig_pixels = null;
+            let point_set = new Array();
+            var triangulation = null;
+            let output_canvas = document.querySelector('#processed');
+            let output_ctx = output_canvas.getContext('2d');
+
+            // Image loader and point accumulation:
+
+            file_input.onchange = function(e) {
+                if (e.target.files && e.target.files.item(0)) {
+                    src_image.src = URL.createObjectURL(e.target.files[0]);
+                }
+            }
+            src_image.onload = function() {
+                input_canvas.width = src_image.width;
+                input_canvas.height = src_image.height;
+                output_canvas.width = src_image.width;
+                output_canvas.height = src_image.height;
+                input_ctx.drawImage(src_image, 0, 0, src_image.width, src_image.height);
+                img_data = input_ctx.getImageData(0, 0, src_image.width, src_image.height);
+                orig_pixels = img_data.data.slice()
+            }
+
+
+            save_btn.onclick = function () {
+                var image = output_canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+                window.location.href = image;
+            }
+            
+            var mouse_down = false;
+
+            output_canvas.onmousedown = function (e) {
+                mouse_down = true;
+            }
+            output_canvas.onmouseup = function (e) {
+                mouse_down = false;
+                point_set.push([e.layerX, e.layerY]);
+                update_triangulation();
+            }
+            output_canvas.onmousemove = function(e) {
+                if (mouse_down) {
+                    point_set.push([e.layerX, e.layerY]);
+                    update_triangulation();
+                }
+            }
+
+            // Triangulation code:
+            function update_triangulation() {
+                if (point_set.length > 2) {
+                    triangulation = Delaunator.from(point_set);
+                    draw_triangulation();
+                }
+            }
+
+            // Draw code:
+
+            function get_color(x, y) {
+
+                let base_coord = y * src_image.width * 4 + x * 4;
+                
+                let r = orig_pixels[base_coord];
+                let g = orig_pixels[base_coord + 1];
+                let b = orig_pixels[base_coord + 2];
+                let a = orig_pixels[base_coord + 3];
+
+                return([r, g, b, a])
+            }
+
+            function compute_triangle_center(p1_idx, p2_idx, p3_idx) {
+                let center_x = Math.floor((point_set[p1_idx][0] + point_set[p2_idx][0] + point_set[p3_idx][0]) / 3);
+                let center_y = Math.floor((point_set[p1_idx][1] + point_set[p2_idx][1] + point_set[p3_idx][1]) / 3);
+                return([center_x, center_y])
+            }
+
+            function compute_midpoint(p1_idx, p2_idx) {
+                let center_x = Math.floor((point_set[p1_idx][0] + point_set[p2_idx][0]) / 2);
+                let center_y = Math.floor((point_set[p1_idx][1] + point_set[p2_idx][1]) / 2);
+                return([center_x, center_y])
+            }
+
+            function draw_triangle(p1_idx, p2_idx, p3_idx) {
+
+                // Setup path, setup fillstyle, and fill:
+                output_ctx.beginPath();
+                output_ctx.moveTo(...point_set[p1_idx])
+                output_ctx.lineTo(...point_set[p2_idx])
+                output_ctx.lineTo(...point_set[p3_idx])
+                output_ctx.closePath();
+
+                output_ctx.fillStyle = 'rgba(' + get_color( ...compute_triangle_center(p1_idx, p2_idx, p3_idx) ).join() + ')';
+                output_ctx.fill();
+
+            }
+
+            function draw_triangulation() {
+
+                // clear:
+                output_ctx.clearRect(0, 0, output_canvas.width, output_canvas.height);
+
+                // var setup:
+                let triangles = triangulation.triangles;
+
+                // Loop through triangles:
+                for (var i = 0; i < triangles.length; i += 3) {
+                    draw_triangle(triangles[i], triangles[i + 1], triangles[i + 2]);
+                }
+            }
+
+            //function decide_split_triangle() {}
+
+            /*function auto_triangulate(min_depth, max_depth) {
+
+                let triangles = triangulation.triangles;
+
+                // Get to minimum depth
+                for (var depth = 0; depth < min_depth; depth++) {
+                    for (var i = 0; i < triangles.length; i+= 3) {
+                        point_set.push(compute_triangle_center(triangles[i], triangles[i + 1], triangles[i + 2]));
+                        //point_set.push(compute_midpoint(triangles[i], triangles[i + 1]));
+                        //point_set.push(compute_midpoint(triangles[i], triangles[i + 2]));
+                        //point_set.push(compute_midpoint(triangles[i + 2], triangles[i + 1]));
+                    }
+                    update_triangulation();
+                    triangles = triangulation.triangles;
+                }
+
+                // Iterate to max depth if needed:
+
+
+            }*/
+
+        </script>
+        
+    </body>
+</html>
