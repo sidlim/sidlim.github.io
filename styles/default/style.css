@@ -45,6 +45,10 @@ p code, li code, h2 code, h3 code, h4 code {
     border-radius: 0em;
 }
 
+section img {
+    max-width: 100%;
+}
+
 a {
     color: inherit;
     text-decoration: underline dotted;
