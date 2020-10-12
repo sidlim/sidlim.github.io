@@ -89,12 +89,13 @@ for (var num of gen()) {
     <hr>
     <p>
         Compose a function with a generator, just like <code>Array.map</code>.
-        Takes in the function <code>f</code> to compose with the generator and
-        converts the Sequence <code>a0, a1, a2, a3, a4, ...</code> to the
-        Sequence <code>f(a0), f(a1), f(a2), f(a3), f(a4), ...</code>.
+        Takes in the function <code>f</code>, which will be passed elements of
+        the Sequence, and indices of the elements in the Sequence.
+        Converts the Sequence <code>a0, a1, a2, a3, a4, ...</code> to the
+        Sequence <code>f(a0, 0), f(a1, 1), f(a2, 2), f(a3, 3), f(a4, 4), ...</code>.
     </p>
     <pre><code>// Assuming fib is a Sequence of fibonacci numbers,
-// compute the fibonacci numbers squared:
+// compute the fibonacci numbers squared (don't need indices):
 let sq = (x) => x**2;
 let fib_sq = fib.map(sq);</code></pre>
 </section>
@@ -103,8 +104,9 @@ let fib_sq = fib.map(sq);</code></pre>
     <hr>
     <p>
         Filter out elements of a generator, just like <code>Array.filter</code>
-        . Takes in a function <code>f</code> that returns <code>true</code> if
-        the value is to be included in the output Sequence, and 
+        . Takes in a function <code>f</code> that will be passed the Sequence
+        elements and respective indices. <code>f</code> returns <code>true</code>
+        if the value is to be included in the output Sequence, and 
         <code>false</code> otherwise.
     </p>
     <pre><code>// Compute the even fibonacci numbers:
@@ -118,8 +120,9 @@ let fib_even = fib.filter(is_even);</code></pre>
         Slice a generator, just like <code>Array.slice</code>.
         Takes in indices <code>start</code> (inclusive) and <code>end</code>
         (exclusive), and keeps only the elements lying between those indices.
-        Observe that <code>Sequence.slice</code> will give a finite,
-        terminating Sequence if <code>end &lt; Infinity</code>.
+        Observe that when starting with an infinite Sequence, 
+        <code>Sequence.slice</code> will give a finite, terminating Sequence
+        when <code>end &lt; Infinity</code> (unlike <code>Sequence.filter</code>).
     </p>
     <pre><code>// Compute the 45th to 60th fibonacci numbers only:
 let fib_subset = fib.filter(45, 66);</code></pre>
