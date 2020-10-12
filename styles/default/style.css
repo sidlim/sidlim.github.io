@@ -47,6 +47,11 @@ p code, li code, h2 code, h3 code, h4 code {
 
 section img {
     max-width: 100%;
+    padding: 1ch 1ch 1ch 1ch;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1ch;
+    background-color: white;
 }
 
 a {
