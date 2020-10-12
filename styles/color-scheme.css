@@ -7,11 +7,23 @@ hr {
     border-color: rgb(168, 168, 186);
 }
 
+code {
+    background-color: rgba(168, 168, 168, 1)
+}
+
 @media(prefers-color-scheme: dark) {
 
     body {
         color: rgba(248,248,248,1);
         background-color: rgba(40, 40, 40,1);
+    }
+
+    header {
+        border-color: rgba(168, 168, 168, 1);
+    }
+
+    code {
+        background-color: black;
     }
 
 }

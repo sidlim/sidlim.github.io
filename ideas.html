@@ -1,0 +1,18 @@
+---
+layout: default
+title: The Idea Backlog
+---
+<section>
+    I've kept this space for ideas that either I haven't had time to flesh
+    out, or I'm not sure how to develop. Feel free to explore them below,
+    and if you have any insights please let me know what you think!
+    <ul>
+        {% for post in site.posts %}
+            {% if post.category == "ideas" %}
+                <li>
+                    <a href="{{ post.url }}"> {{ post.title }} </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</section>

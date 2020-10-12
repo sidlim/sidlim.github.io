@@ -2,7 +2,6 @@ body {
     display: grid;
     line-height: 1.6em;
     font-family: Georgia;
-    font-size: 1.2em;
 }
 
 section {
@@ -32,6 +31,18 @@ nav > ul > li {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal
+}
+
+code {
+    display: block;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+p code, li code, h2 code, h3 code, h4 code {
+    display: inline;
+    padding: 0.5em;
+    border-radius: 0em;
 }
 
 a {
