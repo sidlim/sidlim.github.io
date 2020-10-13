@@ -12,7 +12,6 @@ header {
     grid-area: header;
     padding: 10px;
     max-width: 720px;
-    border-bottom-style: double;
 }
 
 article {
@@ -42,7 +41,7 @@ code {
 p code, li code, h2 code, h3 code, h4 code {
     display: inline;
     padding: 0.5em;
-    border-radius: 0em;
+    border-radius: 0.5em;
 }
 
 section img {
@@ -57,10 +56,4 @@ section img {
 
 a {
     color: inherit;
-    text-decoration: underline dotted;
-}
-
-a:hover {
-    background-color: rgba(120, 120, 120, 0.2);
-    text-decoration: underline;
 }

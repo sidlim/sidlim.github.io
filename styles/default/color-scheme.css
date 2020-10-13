@@ -1,10 +1,5 @@
 body {
-    color: rgba(68,68,68,1);
-    background-color: rgba(248,248,248,1);
-}
-
-hr {
-    border-color: rgb(168, 168, 186);
+    background-color: #EEE;
 }
 
 code {
@@ -14,12 +9,8 @@ code {
 @media(prefers-color-scheme: dark) {
 
     body {
-        color: rgba(248,248,248,1);
-        background-color: rgba(40, 40, 40,1);
-    }
-
-    header {
-        border-color: rgba(168, 168, 168, 1);
+        color: #EEE;
+        background-color: #111;
     }
 
     code {
