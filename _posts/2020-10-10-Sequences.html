@@ -1,13 +1,12 @@
 ---
-layout: default
 title: Sequences
+layout: default
 description: A small library adding functionality to Javascript Generators
 category: projects
 ---
 
 <section>
     <h2>Description:</h2>
-    <hr>
     <p>
         &emsp; Generators in Javascript are really exciting. For one, they're
         functions which can stop mid-way, return a value, and then pick up
@@ -24,7 +23,6 @@ category: projects
 </section>
 <section>
     <h2>Usage:</h2>
-    <hr>
     <p>
         Just include the 
         <a href="https://github.com/eyamil/js-utils">js-utils library</a> in
@@ -44,22 +42,20 @@ category: projects
 </section>
 <section>
     <h2>Overview:</h2>
-    <hr>
     <ul>
-        <li><a href="#wrap"><code>Sequence.wrap</code></a> - Wrap a generator</li>
-        <li><a href="#unwrap"><code>Sequence.unwrap</code></a> - Get a generator out of a Sequence object</li>
+        <li><a href="#wrap"><code>Sequence.wrap</code></a> - Wrap a generator to use all of Sequence's functions on it</li>
+        <li><a href="#unwrap"><code>Sequence.unwrap</code></a> - Get a generator back out of a Sequence object</li>
         <li><a href="#map"><code>Sequence.map</code></a> - Compose generators with other functions</li>
-        <li><a href="#filter"><code>Sequence.filter</code></a> - Filter generator elements</li>
-        <li><a href="#slice"><code>Sequence.slice</code></a> - Slice generators</li>
+        <li><a href="#filter"><code>Sequence.filter</code></a> - Filter out elements from a generator</li>
+        <li><a href="#slice"><code>Sequence.slice</code></a> - Take only a contiguous subset of elements from a generator</li>
         <li><a href="#concat"><code>Sequence.concat</code></a> - Concatenate one generator to another</li>
         <li><a href="#zip"><code>Sequence.zip</code></a> - Zip together two generators into one</li>
         <li><a href="#integrate"><code>Sequence.integrate</code></a> - Like <code>Array.reduce</code>, but get one element for each of the generator's</li>
     </ul>
 </section>
 <section id="wrap">
-    <h2><code>Sequence.wrap</code></h2>
-    <hr>
-    <p>Wraps any generator or iterable object (arrays, maps, etc.), as below.</p>
+    <h3><code>Sequence.wrap(gen)</code>:</h2>
+    <p>Wraps any generator <code>gen</code> or iterable object (arrays, maps, etc.), as below.</p>
     <pre><code>let fibonacci_seq = function * () {
     let i = 0;
     let j = 1;
@@ -75,9 +71,8 @@ let fib = js_utils.Sequence.wrap(fibonacci_seq);
 let small_seq = js_utils.Sequence.wrap([1,2,3]);</code></pre>
 </section>
 <section id="unwrap">
-    <h2><code>Sequence.unwrap</code></h2>
-    <hr>
-    <p>Unwrap a Sequence object to expose the inner generator.</p>
+    <h3><code>Sequence.unwrap()</code>:</h2>
+    <p>Unwrap a Sequence object (in the example, <code>some_seq</code>) to expose the inner generator.</p>
     <pre><code>// Assuming some_seq is a sequence object, print its elements:
 let gen = some_seq.unwrap();
 for (var num of gen()) {
@@ -85,14 +80,13 @@ for (var num of gen()) {
 }</code></pre>
 </section>
 <section id="map">
-    <h2><code>Sequence.map</code></h2>
-    <hr>
+    <h3><code>Sequence.map(mapping_func)</code>:</h2>
     <p>
         Compose a function with a generator, just like <code>Array.map</code>.
-        Takes in the function <code>f</code>, which will be passed elements of
-        the Sequence, and indices of the elements in the Sequence.
-        Converts the Sequence <code>a0, a1, a2, a3, a4, ...</code> to the
-        Sequence <code>f(a0, 0), f(a1, 1), f(a2, 2), f(a3, 3), f(a4, 4), ...</code>.
+        Takes in the function <code>mapping_func</code>, which will be passed elements of
+        the Sequence <code>ai</code> and indices <code>i</code> of the elements.        
+        Converts the Sequence <code>{a0, a1, a2, a3, a4, ...}</code> to the
+        Sequence <code>{mapping_func(a0, 0), mapping_func(a1, 1), mapping_func(a2, 2), mapping_func(a3, 3), mapping_func(a4, 4), ...}</code>.
     </p>
     <pre><code>// Assuming fib is a Sequence of fibonacci numbers,
 // compute the fibonacci numbers squared (don't need indices):
@@ -100,12 +94,11 @@ let sq = (x) => x**2;
 let fib_sq = fib.map(sq);</code></pre>
 </section>
 <section id="filter">
-    <h2><code>Sequence.filter</code></h2>
-    <hr>
+    <h3><code>Sequence.filter(condition_func)</code>:</h2>
     <p>
         Filter out elements of a generator, just like <code>Array.filter</code>
-        . Takes in a function <code>f</code> that will be passed the Sequence
-        elements and respective indices. <code>f</code> returns <code>true</code>
+        . Takes in a function <code>condition_f</code> that will be passed the Sequence
+        elements and respective indices. <code>condition_func</code> returns <code>true</code>
         if the value is to be included in the output Sequence, and 
         <code>false</code> otherwise.
     </p>
@@ -114,8 +107,7 @@ let is_even = (x) => (x % 2 == 0);
 let fib_even = fib.filter(is_even);</code></pre>
 </section>
 <section id="slice">
-    <h2><code>Sequence.slice</code></h2>
-    <hr>
+    <h3><code>Sequence.slice(start, end)</code>:</h2>
     <p>
         Slice a generator, just like <code>Array.slice</code>.
         Takes in indices <code>start</code> (inclusive) and <code>end</code>
@@ -128,25 +120,23 @@ let fib_even = fib.filter(is_even);</code></pre>
 let fib_subset = fib.filter(45, 66);</code></pre>
 </section>
 <section id="concat">
-    <h2><code>Sequence.concat</code></h2>
-    <hr>
+    <h3><code>Sequence.concat(seq2)</code>:</h2>
     <p>
-        Concatenate a generator <code>b</code> to another <code>a</code>, just
+        Concatenate a generator <code>seq2</code> to the current one, just
         like <code>Array.concat</code>. Takes in a Sequence.
-        Observe that the sequence returned by <code>a.concat(b)</code>
-        will only reach elements of <code>b</code> if <code>a</code> 
+        Observe that the sequence returned by <code>seq1.concat(seq2)</code>
+        will only reach elements of <code>seq2</code> if <code>seq1</code> 
         terminates.
     </p>
     <pre><code>// A sequence containing 1 through 5, then the fibonacci numbers:
-let silly_seq = Sequence.wrap([1,2,3,4,5]).concat(fib);</code></pre>
+let silly_seq = (Sequence.wrap([1,2,3,4,5])).concat(fib);</code></pre>
 </section>
 <section id="zip">
-    <h2><code>Sequence.zip</code></h2>
-    <hr>
+    <h3><code>Sequence.zip(seq2, packager_func)</code>:</h2>
     <p>
         Zip a generator with another. Inspired by <code>zip()</code> in Python.
-        Takes in Sequence <code>s</code> and a packager
-        function <code>f</code> (optional, will package elements into length 2
+        Takes in another Sequence <code>seq2</code> and a packager
+        function <code>packager_func</code> (optional, will package elements into length 2
         arrays if not provided) and puts the elements together using the 
         packager.
         Terminates when the shorter of the Sequences terminates.
@@ -159,12 +149,11 @@ let packaged_fib_seqs = fib.zip(lucas, (a, b) => {L: a, F: b});
 </code></pre>
 </section>
 <section id="integrate">
-    <h2><code>Sequence.integrate</code></h2>
-    <hr>
+    <h3><code>Sequence.integrate(reducer_func)</code>:</h2>
     <p>
         Reduce a generator, returning intermediate values. Inspired by
         <code>Array.reduce</code>, but more general-purpose.
-        Takes in a reducer function <code>f</code> and a base case value,
+        Takes in a reducer function <code>reducer_func</code> and a base case value,
         and returns the Sequence of subsequent reductions of s.
     </p>
     <pre><code>// Calculate triangular numbers, assuming N is the sequence of positive integers:
