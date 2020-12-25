@@ -5,25 +5,28 @@
         <title> {{ page.title }} </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel='stylesheet' type='text/css' href='/styles/default/style.css' />
-        <link rel='stylesheet' type='text/css' href='/styles/default/color-scheme.css' />
-        <link rel='stylesheet' type='text/css' href='/styles/default/device_layout.css' />
+        <link href="https://fonts.googleapis.com/css?family=Lato:700&amp;display=swap" rel="stylesheet" type="text/css" async="">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500&amp;display=swap" rel="stylesheet" async="">
     </head>
     
     <body>
-        {% include default_nav.html %}
         <header>
             {% if page.header %}
                 {% include {{ page.header }} %}
             {% else %}
                 <h1> {{ page.title }} </h1>
-                <hr>
             {% endif %}
+
+            {% include default_nav.html %}
         </header>
         <article>
         
         {{ content }}
         
         </article>
+        <footer>
+            {% include default_footer_content.html %}
+        </footer>
     </body>
     
 </html>

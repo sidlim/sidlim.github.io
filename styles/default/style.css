@@ -1,59 +1,125 @@
-body {
-    display: grid;
-    line-height: 1.6em;
-    font-family: Georgia;
+:root {
+    --center-col-max-width: 44em;
+    /* Background Color Palette: */
+    --header-bk-col: #2052BB;
+    --article-bk-col: #F8F8F8;
+    --footer-bk-col: #444;
+    /* Text Color Palette: */
+    --default-txt-col: #444;
+    --inverted-txt-col: #F8F8F8;
 }
 
-section {
-    padding-bottom: 0.2em;
+html {
+    height: 100%;
+}
+
+body {
+    /* Position, display, padding, and margin: */
+    display: grid;
+    grid-template-rows: [header] auto [article] 1fr [footer] auto;
+    height: 100%;
+    margin: 0;
+    /* Aesthetics: */
+    background-color: var(--article-bk-col);
+    color: var(--default-txt-col);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !important;
 }
 
 header {
-    grid-area: header;
-    padding: 10px;
-    max-width: 720px;
+    /* Position, display, padding, and margin: */
+    display: grid;
+    grid-row: header;
+    grid-template-columns: [left] auto [center] minmax(auto, var(--center-col-max-width)) [right] auto;    background-color: var(--header-bk-col);
+    padding: 0 1em 0 1em;
+    /* Aesthetics: */
+    color: var(--inverted-txt-col);
+}
+
+header > * {
+    /* Position, display, padding, and margin: */
+    max-width: 100%;
+    grid-column: center;
+}
+
+header > h1 {
+    /* Position, display, padding, and margin: */
+    margin: 0;
+    padding: 1em 0 0.7em 0;
+    /* Aesthetics: */
+    font-weight: 700;
+    font-size: 2.5em;
+}
+
+header > nav {
+    margin: -1em -0.5em 0 -0.5em;
+}
+
+header > nav > a {
+    /* Position, display, padding, and margin: */
+    display: inline-block;
+    padding: 1em 0.5em 1em 0.5em;
+    /* Aesthetics: */
+    font-size: 1em;
+    line-height: 1.5em;
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.75;
 }
 
 article {
-    grid-area: content;
-    padding: 10px;
-    max-width: 720px;
+    /* Position, display, padding, and margin: */
+    grid-row: article;
 }
 
-nav {
-    grid-area: nav;
+article > section {
+    /* Position, display, padding, and margin: */
+    display: grid;
+    grid-template-columns: [left] auto [center] minmax(auto, var(--center-col-max-width)) [right] auto;
+    padding: 1em 1em 1em 1em;
 }
 
-nav > ul > li {
-    list-style-type: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal
-}
-
-code {
-    display: block;
-    padding: 1em;
-    border-radius: 1em;
-}
-
-p code, li code, h2 code, h3 code, h4 code {
-    display: inline;
-    padding: 0.5em;
-    border-radius: 0.5em;
-}
-
-section img {
-    box-sizing: border-box;
+article > section > * {
+    /* Position, display, padding, and margin: */
     max-width: 100%;
-    padding: 1ch 1ch 1ch 1ch;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1ch;
-    background-color: white;
+    grid-column: center;
 }
 
-a {
-    color: inherit;
+footer {
+    /* Position, display, padding, and margin: */
+    grid-row: footer;
+    display: grid;
+    grid-template-columns: [left] auto [center] minmax(auto, var(--center-col-max-width)) [right] auto;
+    padding: 1em 0 1em 0;
+    /* Aesthetics: */
+    background-color: var(--footer-bk-col);
+    color: var(--inverted-txt-col);
+    text-align: center;
+}
+
+footer > * {
+    /* Position, display, padding, and margin: */
+    max-width: 100%;
+    grid-column: center;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+    margin: 0 0 0.75em 0;
+    padding: 0;
+}
+
+p {
+    margin:0;
+}
+
+ul {
+    margin: 0.5em 0 0.5em 0;
+    padding: 0 1em 0 1em;
+    list-style-position: inside;
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
