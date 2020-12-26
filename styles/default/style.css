@@ -78,6 +78,10 @@ article > section {
     padding: 1em 1em 1em 1em;
 }
 
+article > section:last-child {
+    padding-bottom: 3em;
+}
+
 article > section > * {
     /* Position, display, padding, and margin: */
     max-width: 100%;
@@ -89,7 +93,7 @@ footer {
     grid-row: footer;
     display: grid;
     grid-template-columns: [left] auto [center] minmax(auto, var(--center-col-max-width)) [right] auto;
-    padding: 1em 0 1em 0;
+    padding: 4em 0 4em 0;
     /* Aesthetics: */
     background-color: var(--footer-bk-col);
     color: var(--inverted-txt-col);
@@ -100,6 +104,7 @@ footer > * {
     /* Position, display, padding, and margin: */
     max-width: 100%;
     grid-column: center;
+    opacity: 0.75;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -122,4 +127,8 @@ pre {
     overflow-x: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
+}
+
+img {
+    margin: 1em 1em 1em 1em;
 }
