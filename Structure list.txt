@@ -1,0 +1,131 @@
+Anatomy list
+	⁃	Angular gurus
+	⁃	Calcarine fissure
+	⁃	Central sulcus
+	⁃	Cerebellum
+	⁃	Cerebral Aqueduct
+	⁃	Choroid Plexus
+	⁃	Cingulate gyrus
+	⁃	Corpus callosum: rostrum, genu, body, splenium
+	⁃	Cuneate gyrus
+	⁃	Lingual gyrus
+	⁃	Foramen of Monro
+	⁃	Fourth Ventricle
+	⁃	Frontal lobe
+	⁃	Temporal Lobe
+	⁃	Parietal Lobe
+	⁃	Occipital Lobe
+	⁃	Hypothalamus
+	⁃	Infundibular stalk
+	⁃	Insular Cortex
+	⁃	Interthalamic adhesion
+	⁃	Lateral sulcus
+	⁃	Lateral Ventricle
+	⁃	Mammillary bodies
+	⁃	Medulla
+	⁃	Midbrain
+	⁃	Optic chiasm
+	⁃	Inferior frontal gyrus
+	⁃	Orbital
+	⁃	Triangular
+	⁃	Opercular
+	⁃	Parietal-occipital sulcus
+	⁃	Pineal gland
+	⁃	Pons
+	⁃	Precentral gyrus
+	⁃	Postcentral gyrus
+	⁃	Pre-occipital notch
+	⁃	Septum pellucidum
+	⁃	Superior colliculus
+	⁃	Inferior colliculus
+	⁃	Superior temporal sulcus
+	⁃	Inferior temporal sulcus
+	⁃	Superior longitudinal fissure
+	⁃	Superior frontal gyrus
+	⁃	Middle frontal gyrus
+	⁃	Inferior frontal gyrus
+	⁃	Superior temporal gyrus
+	⁃	Middle temporal gyrus
+	⁃	Inferior temporal gyrus
+	⁃	Supramarginal gyrus
+	⁃	Thalamus
+	⁃	Transverse fissure
+	⁃	Vermis
+	⁃	Anterior Cerebral artery
+	⁃	Anterior Choroidal artery
+	⁃	Anterior communicating artery
+	⁃	Anterior inferior cerebella’s artery
+	⁃	Anterior perforated substance
+	⁃	Arachnoid granulations
+	⁃	Basilar artery
+	⁃	Cerebral peduncles
+	⁃	Dura mater
+	⁃	Falx cerebri
+	⁃	Falx cerebella
+	⁃	Internal carotid
+	⁃	Medullary pyramids
+	⁃	Middle cerebral artery
+	⁃	Middle meningeal artery
+	⁃	Olfactory bulb, tracts, and trig one
+	⁃	Olives
+	⁃	Optic nerves
+	⁃	Optic chiasm
+	⁃	Optic tract
+	⁃	Posterior cerebral artery
+	⁃	Posterior communicating artery
+	⁃	Roots of Cranial Nerves I-XII
+	⁃	Superior cerebella’s artery
+	⁃	Superior Sagittal sinus
+	⁃	Vertebral arteries
+	⁃	Superior cerebellar peduncle
+	⁃	Middle cerebellar peduncle
+	⁃	Inferior cerebellar peduncle
+	⁃	Amygdala
+	⁃	Caudate nucleus
+	⁃	Cerebellar vermis
+	⁃	Claustrophobic
+	⁃	Corona radiate
+	⁃	External capsule
+	⁃	Internal capsule anterior portion
+	⁃	Internal capsule posterior portion
+	⁃	Extreme capsule
+	⁃	Fornix
+	⁃	Globus pallidus internal nucleus
+	⁃	Globus pallidus external nucleus
+	⁃	Hippocampus
+	⁃	Lateral geniculate nucleus
+	⁃	Putamen
+	⁃	Red nucleus
+	⁃	Substantia nigra
+	⁃	Thalamus
+	⁃	Frontal bone
+	⁃	Parietal bone
+	⁃	Occipital bone
+	⁃	Temporal bone
+	⁃	Sphenoid bone
+	⁃	Zygomatic bone
+	⁃	Maxillary bone
+	⁃	Lacrimal bone
+	⁃	Nasal bone
+	⁃	Ethmoid bone
+	⁃	Crystal galli
+	⁃	Cribriform plate of ethmoid plate
+	⁃	Optic canal
+	⁃	Optic groove
+	⁃	Sella Turcica
+	⁃	Foramen rotundum
+	⁃	Foramen ovale
+	⁃	Foramen spinosum
+	⁃	Foramen Lacerum
+	⁃	Superior orbital fissure
+	⁃	Inferior orbital fissure
+	⁃	Foramen magnum
+	⁃	Hypoglossal canal
+	⁃	Carotid canal
+	⁃	Jugular Foramen
+	⁃	Styloid process
+	⁃	Mastoid process
+	⁃	Internal auditory meatus
+	⁃	External auditory meatus
+	⁃	Clivus
+	⁃	Anterior clinoid process
