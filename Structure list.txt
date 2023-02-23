@@ -1,5 +1,5 @@
 Anatomy list
-	⁃	Angular gurus
+	⁃	Angular gyrus
 	⁃	Calcarine fissure
 	⁃	Central sulcus
 	⁃	Cerebellum
@@ -20,15 +20,15 @@ Anatomy list
 	⁃	Insular Cortex
 	⁃	Interthalamic adhesion
 	⁃	Lateral sulcus
-	⁃	Lateral Ventricle
+	⁃	Lateral ventricle
 	⁃	Mammillary bodies
 	⁃	Medulla
 	⁃	Midbrain
 	⁃	Optic chiasm
 	⁃	Inferior frontal gyrus
-	⁃	Orbital
-	⁃	Triangular
-	⁃	Opercular
+	⁃	Orbital part of inferior frontal gyrus
+	⁃	Triangular part of inferior frontal gyrus
+	⁃	Opercular part of inferior frontal gyrus
 	⁃	Parietal-occipital sulcus
 	⁃	Pineal gland
 	⁃	Pons
