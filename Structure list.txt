@@ -61,12 +61,12 @@ Anatomy list
 	⁃	Cerebral peduncles
 	⁃	Dura mater
 	⁃	Falx cerebri
-	⁃	Falx cerebella
+	⁃	Falx cerebelli
 	⁃	Internal carotid
 	⁃	Medullary pyramids
 	⁃	Middle cerebral artery
 	⁃	Middle meningeal artery
-	⁃	Olfactory bulb, tracts, and trig one
+	⁃	Olfactory bulb, tracts, and trigone
 	⁃	Olives
 	⁃	Optic nerves
 	⁃	Optic chiasm
@@ -74,7 +74,7 @@ Anatomy list
 	⁃	Posterior cerebral artery
 	⁃	Posterior communicating artery
 	⁃	Roots of Cranial Nerves I-XII
-	⁃	Superior cerebella’s artery
+	⁃	Superior cerebellar artery
 	⁃	Superior Sagittal sinus
 	⁃	Vertebral arteries
 	⁃	Superior cerebellar peduncle
@@ -83,8 +83,8 @@ Anatomy list
 	⁃	Amygdala
 	⁃	Caudate nucleus
 	⁃	Cerebellar vermis
-	⁃	Claustrophobic
-	⁃	Corona radiate
+	⁃	Claustrum
+	⁃	Corona radiata
 	⁃	External capsule
 	⁃	Internal capsule anterior portion
 	⁃	Internal capsule posterior portion
