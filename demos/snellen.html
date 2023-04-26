@@ -19,6 +19,7 @@
                 max-height: 75vmin;
                 max-width: 75vmin;
                 display: none;
+                margin: auto;
             }
 
             #controls {
@@ -26,6 +27,10 @@
             }
 
             #controls > span {
+                display: block;
+            }
+            
+            #controls > fieldset > span {
                 display: block;
             }
 
@@ -50,7 +55,7 @@
 
             @font-face {
                 font-family: Optosense;
-                src: url(Optiker-K.woff);
+                src: url("Optiker-K.woff") format("woff");
             }
         </style>
     </head>
@@ -100,14 +105,17 @@
                     VAs.map((dist) => {
                         let button = document.createElement('input');
                         let label = document.createElement('label');
+                        let container = document.createElement('span')
                         button.type = 'radio';
                         button.name = 'VA';
                         button.value = dist;
-                        label.for = dist;
+                        button.id = dist;
+                        label.htmlFor = dist;
                         label.value = dist;
                         label.innerText = '20/' + dist;
-                        acuityControl.appendChild(button);
-                        acuityControl.appendChild(label);
+                        acuityControl.appendChild(container);
+                        container.appendChild(button);
+                        container.appendChild(label);
                     })
                     document.querySelectorAll('input[value="20"]')[0].checked = true;
                     acuityControl.onchange = function() {
@@ -163,7 +171,9 @@
                         qr_div.style.display = 'none';
                         const chart = document.getElementById('chart');
                         chart.style.display = 'inherit';
-                        chart.addEventListener("click", function() {chart.requestFullscreen()});
+                        function fullscreen() {chart.requestFullscreen()};
+                        chart.addEventListener("click", fullscreen);
+                        chart.addEventListener("touch", fullscreen);
 
                         conn.on('data', function(data) {
                         if (typeof(data) == 'object') {
