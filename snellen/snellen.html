@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script type="text/javascript" src="qrcodegen-v1.8.0-es6.js"></script>
+        <script type="text/javascript" src="helpers.js"></script>
+        <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
+        <style type="text/css">
+
+            :root{
+                --font-scale-factor: 1;
+            }
+
+            body {
+                margin: 0
+            }
+
+            #qr {
+                max-height: 75vmin;
+                max-width: 75vmin;
+                display: none;
+                margin: auto;
+            }
+
+            #controls {
+                display: none;
+            }
+
+            #controls > span {
+                display: block;
+            }
+            
+            #controls > fieldset > span {
+                display: block;
+            }
+
+            #chart {
+                display: none;
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+                text-transform: full-width;
+                text-align: center;
+                vertical-align: middle;
+                white-space: nowrap;
+                line-height: 100vh;
+                font-family: Optosense;
+                font-size: calc(250px * var(--font-scale-factor));
+                background-color: white;
+            }
+
+            fieldset > input {
+                display: block;
+            }
+
+            @font-face {
+                font-family: Optosense;
+                src: url("Optiker-K.woff") format("woff");
+            }
+        </style>
+    </head>
+    <body>
+        <div id="qr"></div>
+        <div id="controls">
+            <span>VA:</span> <fieldset id="VA"></fieldset>
+            <span>Distance (ft): <input id="Distance" type="number" /></span>
+            <span>Initial (20/20) character height (in):<input id="Height" type="number" /></span>
+            <span>Number of Letters: <input id="length" type="number", value="5" /><input type="button" id="random" value="Randomize"/></span>
+        </div>
+        <div id="chart"> E </div>
+        <script type="text/javascript">
+            // Application startup logic:
+            const searchQuery = window.location.search;
+            const url = window.location.toString().replace(searchQuery, "");
+            const urlParams = new URLSearchParams(searchQuery);
+            const peer = new Peer(null, {debug: 2});
+            let conn = null;
+
+            // Generic helper that will log all messages recieved and sent:
+            function logData() {
+                // Receive messages
+                conn.on('data', function(data) {
+                    console.log('Received', data);
+                });
+    
+                // Send messages
+                conn.send('Hello!');
+                console.log('opened connection')
+            };
+
+            // Remote & client logic:
+            peer.on('open', function(selfID) {
+                if (urlParams.has('peerID')) {
+                    // This is a remote. Connect to the peer:
+                    const peerID = urlParams.get('peerID')
+                    conn = peer.connect(peerID);
+                    conn.on('open', logData);
+
+                    // Setup control panel:
+                    const controlPanel = document.getElementById('controls');
+                    controlPanel.style.display = 'inherit'
+
+                    // Setup acuity control
+                    const acuityControl = document.getElementById('VA');
+                    VAs.map((dist) => {
+                        let button = document.createElement('input');
+                        let label = document.createElement('label');
+                        let container = document.createElement('span')
+                        button.type = 'radio';
+                        button.name = 'VA';
+                        button.value = dist;
+                        button.id = dist;
+                        label.htmlFor = dist;
+                        label.value = dist;
+                        label.innerText = '20/' + dist;
+                        acuityControl.appendChild(container);
+                        container.appendChild(button);
+                        container.appendChild(label);
+                    })
+                    document.querySelectorAll('input[value="20"]')[0].checked = true;
+                    acuityControl.onchange = function() {
+                        acuity = document.querySelector('input[name="VA"]:checked').value;
+                        conn.send(currentParams())
+                    }
+
+                    // Setup distance control
+                    const distControl = document.getElementById('Distance');
+                    distControl.value = 1.0;
+                    distControl.onchange = function() {
+                        distance = Number(distControl.value);
+                        conn.send(currentParams())
+                    }
+
+                    // Setup char control
+                    const initSizeControl = document.getElementById('Height');
+                    initSizeControl.value = 1.0;
+                    initSizeControl.onchange = function() {
+                        initCharSize = Number(initSizeControl.value);
+                        conn.send(currentParams())
+                    }
+
+                    // Setup random button
+                    const randControl = document.getElementById('random');
+                    const lengthControl = document.getElementById('length');
+                    randControl.onclick = function() {
+                        length = Number(lengthControl.value);
+                        conn.send(currentParams());
+                    }
+                }
+                else {
+                    // This is a client, not a remote, so engage in peer/p2p logic:
+                    console.log('My peer ID is: ' + selfID);
+                    
+                    // Construct URL w/ embedded peer ID:
+                    const remoteURL = url + `?peerID=${selfID}`;
+                    console.log(remoteURL);
+
+                    // Setup QR Code
+                    const qr_div = document.getElementById('qr');
+                    qr_div.style.display = 'inherit';
+                    const qrcode = qrcodegen.QrCode.encodeText(remoteURL, qrcodegen.QrCode.Ecc.MEDIUM);
+                    const svg = toSvgString(qrcode, 1, 'white', 'black')
+
+                    qr_div.innerHTML = svg;
+
+                    peer.on('connection', function(data) {
+                        conn = data
+                        conn.on('open', logData);
+
+                        // Hide QR and setup chart:
+                        qr_div.style.display = 'none';
+                        const chart = document.getElementById('chart');
+                        chart.style.display = 'inherit';
+                        function fullscreen() {chart.requestFullscreen()};
+                        chart.addEventListener("click", fullscreen);
+                        chart.addEventListener("touch", fullscreen);
+
+                        conn.on('data', function(data) {
+                        if (typeof(data) == 'object') {
+                            acuity = data.acuity;
+                            distance = data.distance;
+                            initCharSize = data.initCharSize;
+                            length = data.length;
+
+                            // Calculate font scale factor and update:
+                            let scale_20_20 = 2 * 12 * distance * Math.tan(5 * Math.PI / 10800) / initCharSize;
+                            document.documentElement.style.cssText = `--font-scale-factor: ${scale_20_20 * acuity / 20};`
+                            chart.innerText = randomLetters(length);
+
+                        }
+                    })
+
+                    });
+                }
+            });
+
+            peer.on('connection', function(data) {
+                console.log(data);
+            });
+
+            // VA setup:
+            const VAs = [20, 25, 30, 40, 50, 60, 80, 100, 150, 200, 250, 300]
+            
+            let acuity = VAs[0];
+            let distance = 1.0;
+            let initCharSize = 1.0;
+            let length = 5;
+
+            function currentParams() {
+                return({acuity: acuity,
+                distance: distance,
+                initCharSize: initCharSize,
+                length: length})
+            }
+
+            function randomLetters(length) {
+                const letters = 'ABCDEFGHIJLKMNOPQRSTUVWXYZ';
+                let selected = [];
+                for (let i = 0; i < length; i++){
+                    selected.push(letters[Math.floor(Math.random() * letters.length)]);
+                }
+                return(selected.join(' '))
+            }
+        </script>
+    </body>
+</html>
