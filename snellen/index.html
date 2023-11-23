@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Web Visual Acuity System</title>
         <script type="text/javascript" src="qrcodegen-v1.8.0-es6.js"></script>
         <script type="text/javascript" src="helpers.js"></script>
         <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
@@ -11,19 +12,35 @@
                 --font-scale-factor: 1;
             }
 
+            html {
+                background-color: white;
+            }
+
             body {
-                margin: 0
+                margin: 0;
+                background-color: white;
+            }
+
+            #landing {
+                display: none;
+                padding: 1em;
             }
 
             #qr {
                 max-height: 75vmin;
                 max-width: 75vmin;
-                display: none;
+                margin: auto;
+            }
+
+            #instructions {
+                max-width: 75vmin;
                 margin: auto;
             }
 
             #controls {
                 display: none;
+                max-width: 12em;
+                margin: auto auto;
             }
 
             #controls > span {
@@ -39,14 +56,19 @@
                 height: 100vh;
                 width: 100vw;
                 overflow: hidden;
-                text-transform: full-width;
                 text-align: center;
                 vertical-align: middle;
                 white-space: nowrap;
                 line-height: 100vh;
-                font-family: Optosense;
+                font-family: Optician;
                 font-size: calc(250px * var(--font-scale-factor));
                 background-color: white;
+            }
+
+            #chart > span {
+                display: inline-block;
+                width: 1.5em;
+                text-align: center;
             }
 
             fieldset > input {
@@ -54,21 +76,34 @@
             }
 
             @font-face {
-                font-family: Optosense;
+                font-family: Optician;
                 src: url("Optician-Sans.woff") format(woff);
             }
         </style>
     </head>
     <body>
-        <div id="qr"></div>
+        <div id="landing">
+            <div id="qr"></div>
+            <div id="instructions">Instructions</div>
+        </div>
         <div id="controls">
             <span>VA:</span> <fieldset id="VA"></fieldset>
             <span>Distance (ft): <input id="Distance" type="number" /></span>
             <span>Initial (20/20) character height (in):<input id="Height" type="number" /></span>
-            <span>Number of Letters: <input id="length" type="number", value="5" /><input type="button" id="random" value="Randomize"/></span>
+            <span>Number of Letters: <input id="length" type="number", value="5" /><input type="button" id="random" value="Randomize Letters"/></span>
         </div>
         <div id="chart"> E </div>
         <script type="text/javascript">
+            // Charsets:
+            const charsets = {
+                'digits': '0123456789',
+                'alpha': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                'snellen': 'CDEFLOPTZ',
+                'Tumbling E': 'E'
+            }
+
+            let selected_charset = 'snellen';
+
             // Application startup logic:
             const searchQuery = window.location.search;
             const url = window.location.toString().replace(searchQuery, "");
@@ -97,11 +132,11 @@
                     conn.on('open', logData);
 
                     // Setup control panel:
-                    const controlPanel = document.getElementById('controls');
+                    const controlPanel = document.querySelector('#controls');
                     controlPanel.style.display = 'inherit'
 
                     // Setup acuity control
-                    const acuityControl = document.getElementById('VA');
+                    const acuityControl = document.querySelector('#VA');
                     VAs.map((dist) => {
                         let button = document.createElement('input');
                         let label = document.createElement('label');
@@ -124,7 +159,7 @@
                     }
 
                     // Setup distance control
-                    const distControl = document.getElementById('Distance');
+                    const distControl = document.querySelector('#Distance');
                     distControl.value = 1.0;
                     distControl.onchange = function() {
                         distance = Number(distControl.value);
@@ -132,7 +167,7 @@
                     }
 
                     // Setup char control
-                    const initSizeControl = document.getElementById('Height');
+                    const initSizeControl = document.querySelector('#Height');
                     initSizeControl.value = 1.0;
                     initSizeControl.onchange = function() {
                         initCharSize = Number(initSizeControl.value);
@@ -140,8 +175,8 @@
                     }
 
                     // Setup random button
-                    const randControl = document.getElementById('random');
-                    const lengthControl = document.getElementById('length');
+                    const randControl = document.querySelector('#random');
+                    const lengthControl = document.querySelector('#length');
                     randControl.onclick = function() {
                         length = Number(lengthControl.value);
                         conn.send(currentParams());
@@ -155,9 +190,15 @@
                     const remoteURL = url + `?peerID=${selfID}`;
                     console.log(remoteURL);
 
+                    // Allow fullscreen:
+                    function fullscreen() {document.body.requestFullscreen()};
+                    document.body.addEventListener("click", fullscreen);
+                    document.body.addEventListener("touch", fullscreen);
+
                     // Setup QR Code
-                    const qr_div = document.getElementById('qr');
-                    qr_div.style.display = 'inherit';
+                    const landing_div = document.querySelector('#landing');
+                    const qr_div = document.querySelector('#qr');
+                    landing_div.style.display = 'inherit';
                     const qrcode = qrcodegen.QrCode.encodeText(remoteURL, qrcodegen.QrCode.Ecc.MEDIUM);
                     const svg = toSvgString(qrcode, 1, 'white', 'black')
 
@@ -168,12 +209,9 @@
                         conn.on('open', logData);
 
                         // Hide QR and setup chart:
-                        qr_div.style.display = 'none';
-                        const chart = document.getElementById('chart');
+                        landing_div.style.display = 'none';
+                        const chart = document.querySelector('#chart');
                         chart.style.display = 'inherit';
-                        function fullscreen() {chart.requestFullscreen()};
-                        chart.addEventListener("click", fullscreen);
-                        chart.addEventListener("touch", fullscreen);
 
                         conn.on('data', function(data) {
                         if (typeof(data) == 'object') {
@@ -185,10 +223,24 @@
                             // Calculate font scale factor and update:
                             let scale_20_20 = 2 * 12 * distance * Math.tan(5 * Math.PI / 10800) / initCharSize;
                             document.documentElement.style.cssText = `--font-scale-factor: ${scale_20_20 * acuity / 20};`
-                            chart.innerText = randomLetters(length);
+                            let chars = randomLetters(length);
+                            chart.replaceChildren(... chars.map((char) => {
+                                let span = document.createElement('span');
+                                span.innerText = char;
+                                return(span)
+                            }))
+                            
 
                         }
                     })
+
+                    peer.on('disconnected', function(data) {
+                        console.log(data);
+                    });
+
+                    peer.on('close', function(data) {
+                        console.log(data);
+                    });
 
                     });
                 }
@@ -214,12 +266,12 @@
             }
 
             function randomLetters(length) {
-                const letters = 'ABCDEFGHIJLKMNOPQRSTUVWXYZ';
+                let charset = charsets[selected_charset];
                 let selected = [];
                 for (let i = 0; i < length; i++){
-                    selected.push(letters[Math.floor(Math.random() * letters.length)]);
+                    selected.push(charset[Math.floor(Math.random() * charset.length)]);
                 }
-                return(selected.join(' '))
+                return(selected)
             }
         </script>
     </body>
